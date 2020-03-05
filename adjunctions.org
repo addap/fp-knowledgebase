@@ -1,0 +1,6 @@
+* Description
+Just to expand on the connection between State and Store, all monads arise from a composition of adjoint functors. It's commonly known that the functors (r -> _) (a.k.a. Reader) and (_, r) (flipped works too, but doesn't fit the usual presentation of State in Haskell, and can't be a Functor instance in Haskell) are adjoint, and if you compose them one way (s -> (_ , s)) you'll get a monad, and if you compose them the other way ((s -> _, s)) you'll get a comonad.
+
+What does that mean and are there more examples
+* Resources
+** TODO [[https://www.reddit.com/r/haskell/comments/eoajf1/adjunctions_in_the_wild_foldl/][Reddit on foldl]]

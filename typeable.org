@@ -1,0 +1,5 @@
+* Description
+Seems to be a way to have run-time type information in Haskell. But I don't understand anything of it yet.
+* Resources
+** TODO [[https://gitlab.haskell.org/ghc/ghc/wikis/typeable][GHC Wiki entry]]
+** TODO [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/08/dynamic.pdf][A Reflection on Types]]

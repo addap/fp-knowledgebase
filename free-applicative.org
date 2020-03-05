@@ -1,0 +1,4 @@
+* Description
+* Resources
+** TODO [[https://www.youtube.com/watch?v=H28QqxO7Ihc][Free Applicatives vs Free Monads]]
+** TODO [[https://arxiv.org/abs/1403.0749][Free Applicatives paper]]

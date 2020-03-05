@@ -1,0 +1,13 @@
+* Description
+Continuations are a way of expressing how a computation continues, like a function that does not return.
+Delimited Continuations are a more general form of continuation that only captures a continuation up to a certain limit.
+
+Continuation Passing Style is a compilation technique where each function f(a) = do-something-with-a gets transformed to have an extra continuation argument c which will be called instead of returning from the function. call/cc is a way of getting your hands on a continuation. It's a special case of this CPS transform because call/cc(f) will be transformed to call/cc(f, c) = f(c, c) so it does not call c, but rather f and gives the continuation as the first arg so that f can use it.
+
+* Resources
+** TODO [[https://dl.acm.org/doi/10.1145/3236764][Handling Delimited Continuations with Dependent Types]]
+** TODO [[https://jlongster.com/Whats-in-a-Continuation][What's in a Continuation?]]
+** TODO [[http://www.haskellforall.com/2014/04/how-continuation-monad-works.html][How the continuation Monad works]]
+** TODO [[https://en.m.wikibooks.org/wiki/Haskell/Continuation_passing_style][Continuation Passing Style]]
+** DONE [[https://www.ps.uni-saarland.de/~duchier/python/continuations.html][Continuations Made Simple]]
+The validator is I think implemented the same way in SICP

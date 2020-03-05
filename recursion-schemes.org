@@ -1,0 +1,9 @@
+* Description
+Is that something like a further generalization of fold or map?
+* Resources
+** TODO [[https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf][Bananas, Lenses, Envelopes and Barbed Wire]]
+** TODO [[https://hackage.haskell.org/package/data-fix-0.2.0/docs/Data-Fix.html][Seems to have something to do with the Fix datatype]]
+** TODO [[https://github.com/sellout/recursion-scheme-talk/blob/master/recursion-scheme-talk.org][Fix Haskell (by eliminating recursion)]]
+** TODO [[https://jtobin.io/practical-recursion-schemes][Practical Recursion Schemes]]
+** TODO [[http://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt][Recursive Types by Wadler]]
+

@@ -1,0 +1,14 @@
+* Description
+Often Monads are explained using an analogy like burritos or spacesuits but that also often breaks down if the Monad is not container-like. 
+A better analogy would be a strategy to compute a value of some type using extra structure around that other type where you can easily move a value into that structure (return) and collapse a doubly nested structure down (join). The join is where all the interesting stuff of a Monad happens because there you can decide how multiple of these "strategies" interact.
+As such a monad "hides" the value and only provides access to it using a continuation (bind)
+* Resources
+** TODO [[file:~/Documents/Compsci/papers/Monads%20for%20Functional%20Programming.pdf][Wadler's original paper]]
+** DONE [[https://www.parsonsmatt.org/2015/11/24/an_intuition_on_context.html][An Intuition on Context]] [[file:playground/src/intuition-on-context.lhs::>%20{-#%20LANGUAGE%20TypeOperators,%20GeneralizedNewtypeDeriving%20#-}][notes]]
+** TODO [[https://www.ioc.ee/~tarmo/papers/sfp01-book.pdf][The Dual of Substitution Is Redecoration]]
+** TODO [[http://strictlypositive.org/Idiom.pdf][Functional Pearl on Applicatives]]
+** TODO [[https://www.reddit.com/r/haskell/comments/epk6e2/a_tale_of_two_functors_or_how_i_learned_to_stop/femd7no/][A Tale of Two Functors]]
+** TODO [[https://github.com/Mzk-Levi/texts/blob/master/Monads%2520are%2520Trees%2520with%2520Grafting.pdf][Dan Piponi on Monads are Trees with Grafting]]
+** DONE [[https://stackoverflow.com/questions/11234632/monads-with-join-instead-of-bind][Nice intuition about Monads as strategies to compute a value]], [[file:playground/src/monad.lhs::>%20module%20MonadIntuition%20where][notes]]
+* Questions
+** TODO What's a representable functor?

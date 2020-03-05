@@ -1,0 +1,28 @@
+* Description
+Comonads are the categorical dual to monads. Comonads model [[http://tomasp.net/coeffects/][Coeffects]]. Effects are about what your program does to the environment (Monads) and Coeffects are about how your program takes information from the environment. As such game of life is comonadic since computing the value for a cell requires knowledge about the adjacent cells.
+You can always extract a value from a Comonad (extract) and duplicate the structure (duplicate) which can be used to apply a function to each value in a Comonad that also gets access to all other values inside that Comonad (extend).
+
+* Resources
+** DONE [[https://www.youtube.com/watch?v=F7F-BzOB670&list=WL&index=25&t=4s][Getting a quick fix on Comonads]], [[file:playground/src/quick-fix-on-comonads.hs::{-#%20LANGUAGE%20ScopedTypeVariables,%20FlexibleContexts,%20UndecidableInstances,%20DataKinds,%20KindSignatures,%20GADTs,%20TypeFamilies,%20MultiParamTypeClasses,%20TypeOperators,%20TypeInType%20#-}][notes]]
+** DONE [[http://blog.sigfpe.com/2006/12/evaluating-cellular-automata-is.html][Evaluating Cellular Automata is comonadic]]
+** DONE [[https://www.quora.com/What-is-a-Comonad-and-when-should-I-use-them?share=1][Milewski on Quora]]
+** DONE [[https://stackoverflow.com/questions/8428554/what-is-the-comonad-typeclass-in-haskell][SO]]
+** TODO [[file:~/Documents/Compsci/papers/codo-notation-orchard-ifl12.pdf][Codo-notation]]
+** TODO [[https://www.schoolofhaskell.com/user/edwardk/cellular-automata/part-1][Edward Kmett Comonads Blog]]
+** DONE [[http://comonad.com/haskell/Comonads_1.pdf][Edward Kmett Comonads Presentation]]
+** DONE Loeb's Theorem on sigfpe
+** TODO [[http://tomasp.net/coeffects/][Coeffects]]
+** TODO [[https://fmapfixreturn.wordpress.com/2008/07/09/comonads-in-everyday-life/][Comonads in Everyday Life]]
+** TODO [[http://conal.net/blog/posts/sequences-streams-and-segments][Streams are Comonads]]
+** TODO "The Essence of Dataflow Programming"
+** TODO [[http://www.haskellforall.com/2013/02/you-could-have-invented-comonads.html][Comonads are objects]]
+* Examples
+** [[file:comonads.hs::import%20Prelude%20hiding%20(iterate)][Tape]]
+** [[file:playground/src/comonad-store.lhs::>%20import%20Data.Functor.Extend][Store]], [[https://stackoverflow.com/questions/8766246/what-is-the-store-comonad][SO]]
+** [[file:playground/src/comonad.lhs::From%20Edward%20Kmetts%20presentation][Notes on Edward Kmett's presentation]]
+** Stencils
+* Questions
+** TODO Why exactly has Kenneth Foner's fix sharing and the others don't and what is ComonadApply?
+** TODO Stencils are comonads?
+Are stencils like the ones that Master student at the Compiler Chair talked about comonads. You would probably have to work around the fact that the underlying array is not infinite so you can only apply the stencil to cells not at the border (duplicating only works for some cells)
+** TODO Enlightening exercise: For an arbitrary Functor f show how czip and (<@>) can be implemented in terms of each other and fmap @20:10 in Kenneth Foner's video

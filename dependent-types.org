@@ -1,0 +1,12 @@
+* Description
+Dependent types make types first-class citizens of a programming language, i.e. they can be arguments to functions, can be returned and stored in variables etc. This allows some neat things like putting more invariants about your data into its type. Canonical example is length of vector in its type.
+
+* Resources
+** DONE [[https://www.youtube.com/watch?v=XJ8hm3Tq2k8%20][Richard Eisenberg YT]]
+   CLOSED: [2020-02-23 So 00:38]
+*** TODO read the papers mentioned in the beginning of the talk to get an overview of types in Haskell, especially DataKinds, TypeFamilies, Type indexed Types and TypeInType
+*** TODO what is TypeRep, polymorphic recursion and a cusk at 42:12
+*** TODO implement Vec in Coq and prove elemIndex e v < lenght v
+*** TODO How does that relate to the "Compile Time Parsing" paper, where you can also only represent well typed expressions? Do you need dependent types just for the variable binding DeBruijn indices?
+** DONE [[https://github.com/sweirich/dth][Stephanie Weirich]]
+** TODO [[https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf][Programming and Reasoning with Algebraic Effects andDependent Types]], same todo in algebraic effects

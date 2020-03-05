@@ -1,0 +1,53 @@
+* Haskell
+** TODO Impredicativity
+** TODO Typeable
+** TODO [[file:rank-n-types.org::*Description][Rank-N-Types]]
+** TODO Existential Types
+** TODO Functional Dependency
+** TODO Phantom Type
+** TODO [[file:typeintype.org::*Description][TypeInType]]
+** TODO Type Classes
+** TODO Monomorphism Restriction
+** TODO [[file:zippers.org::*Description][Zippers and Derivatives of Types]]
+** TODO Open and closed Type Classes
+** TODO [[file:continuation.org::*Description][Continuation Monad]]
+** TODO Ideal Monads
+** TODO [[file:free-monad.org::*Description][Free Monads]]
+** TODO [[file:free-applicatives.org::*Description][Free Applicatives]]
+** TODO [[file:cofree-comonad.org::*Description][Cofree Comonads]]
+** TODO Contravariant Functors
+** TODO [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#arrow-notation][Arrow Notation]]
+** TODO [[file:monads.org::*Description][Monads/Applciatives/Functors]]
+** TODO [[file:adjunctions.org::*Description][Adjunctions]]
+** TODO [[file:state.org::*Description][State Monad]]
+** DONE [[file:reader.org::*Description][Reader Monad]]
+** DONE [[file:writer.org::*Description][Writer Monad]]
+** TODO [[file:comonads.org::*Description][Comonads]]
+** TODO [[file:recursion-schemes.org::*Description][Recursion Schemes]]
+** TODO fixpoint function
+** TODO [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#constraint-kind][ConstraintKinds]] and its example in FlexibleContexts
+** TODO MonoLocalbinds why the warning [[file:comonads.hs::--%20instance%20(Show%20(Stream%20a))%20=>%20Show%20(Tape%20a)%20where][here]]
+*** [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/jfp-outsidein.pdf][Paper]], [[http://ghc.haskell.org/trac/ghc/blog/LetGeneralisationInGhc7][Blog]]
+*** I think it was just because I was adding an unneccessary constraint
+** TODO Data.Functor.Compose
+** TODO Traversable, Jaskeliov & Rypacek MSFP 2012
+** TODO M. P. Jones & Shield, Composing Monads
+* Coq
+** TODO do the proof for Falsity <=> Foo from Alexander
+** TODO is the Stream type from [[file:comonads.hs::data%20Stream%20a%20=%20Cons%20a%20(Stream%20a)][here]] isomorphic to Foo/can we write one that is still equivalent to Falsity in Coq?
+** [[http://gallium.inria.fr/blog/incremental-cycle-detection/][Proving Asymptotic Bounds with Coq]]
+* Type Theory
+** TODO Tagless Final Style
+** TODO [[file:dependent-types.org::*Description][Dependent Types]]
+** TODO [[file:algebraic-effects.org::*Description][Algebraic Effects]]
+** TODO [[file:continuation.org::*Description][(Delimited) Continuations]]
+** TODO [[https://www.cs.bham.ac.uk/~pbl/mgs2014lam.html][Typed Lambda Calculus]]
+** TODO Black von Kenichi Asai
+** TODO Church Encoding
+** TODO row types
+** TODO indexed types
+** TODO inductive, coinductive and [[http://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt][recursive types]]
+* Misc
+** TODO [[file:futamura.org::*Description][Futamura Projections]]
+** TODO [[file:partial-evaluation.org::*Description][Partial Evaluation]]
+   

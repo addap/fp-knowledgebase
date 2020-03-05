@@ -1,0 +1,5 @@
+* Description
+The Writer monad is bascially a pair of type (w, a) where w is a monoid which represents a "log" that is written to and a is the output of a computation. if you bid multiple Writer's to each other the log gets appended each time since it's a monoid. See the notes for an example.
+* Resources
+** DONE [[https://stackoverflow.com/questions/11684321/how-to-play-with-control-monad-writer-in-haskell][StackOverflow1]] [[https://stackoverflow.com/questions/55661476/what-is-the-difference-between-a-writer-monad-and-a-list-writer-monad][StackOverflow2]] [[file:playground/src/monad-writer.lhs::The%20Writer%20monad%20is%20just%20a%20pair%20of%20a%20monoid%20w%20and%20the%20result%20a][notes]]
+   CLOSED: [2020-02-29 Sa 11:46]

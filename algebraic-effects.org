@@ -1,0 +1,54 @@
+* Description
+Algebraic Effects are a structured form of delimited continuations that allow you to resume computation at exactly that point where an effect eas triggered. You can think of it like resumable exceptions.
+Algebraic effects and handlers provide a modular abstraction  for  expressing  effectful  computation,  allowing the programmer to separate the expression of an effectfulcomputation from its implementation.
+
+* Resources 
+** DONE [[https://www.youtube.com/watch?v=hrBq8R_kxI0][Daan Leijen on Algebraic Effects]]
+   CLOSED: [2020-02-22 Sa 23:59]
+** TODO [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/08/algeff-tr-2016-v2.pdf][Daan Leijen's Paper on the topic]]
+** [[https://www.rise4fun.com/koka/tutorial][Koka online interpreter]]
+** DONE [[https://overreacted.io/algebraic-effects-for-the-rest-of-us/][Blog Post on overreacted with focus on React]]
+   CLOSED: [2020-02-22 Sa 23:59]
+** TODO [[https://dev.to/yelouafi/algebraic-effects-in-javascript-part-1---continuations-and-control-transfer-3g88][Blog Post on Javascript]]
+** TODO [[https://github.com/ocamllabs/ocaml-effects-tutorial][Algebraic effects in OCaml tutorial]]
+** DONE [[https://www.cl.cam.ac.uk/~jdy22/papers/effective-concurrency-through-algebraic-effects.pdf][Concurrency with algebaic effects]]
+   CLOSED: [2020-02-23 So 01:00]
+** TODO [[https://drops.dagstuhl.de/opus/volltexte/2019/10537/pdf/LIPIcs-FSCD-2019-30.pdf][Paper from Dagstuhl]]
+** TODO [[https://www.youtube.com/watch?v=z8SI7WBtlcA][Algebraic Effects in OCaml Video]]
+** DONE [[https://www.youtube.com/watch?v=zp0OEDcAro0][Condition System in Clojure]]
+   CLOSED: [2020-02-23 So 19:50]
+** TODO [[https://link.springer.com/content/pdf/10.1023/A:1010087314987.pdf][A syntactic Theory of Dynamic Binding]]
+The paper formalizes resumable exceptions using dynamic binding. But that seems like a different primitive than continuations. They seems to leverage the fact that with dynamic binding they can overwrite the behavior of a the signal-condition function from the place you would write the handler in a continuation-based approach to get the same effect. But I'm not sure if both approaches are equivalent.
+** TODO [[https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf][Programming and Reasoning with Algebraic Effects andDependent Types]], same todo in dependent types
+* Comparison to Delimited Continuations
+Delimited Continuations seem very similar but are probably more powerful since you can call the continuation multiple times while with algebaic effects you can only resume it once to react to the event. But maybe that depends on the implementation (He says one-shot continuations can be implemented very efficiently, [[https://github.com/koka-lang/koka/blob/master/test/async/async2.kk][but in the examples online there is one where he calls resume twice]]). You could simulate AE with delimited continuations by delimiting up to the respective handler for the effect. Calling the effect would then be the equivalent to `call-cc` and the continuation itself can be called with `resume`
+But with AE the code that has access to the continuation is at the handler/delimiter and with delimited continuations it is at the raise/call-cc I think. Having it close to the handler seems more practical.
+
+* Uses
+Daan shows in his talk how you can implement Exceptions, the Reader Monad, the State Monad and async functions with Algebraic Effects. All by implementing the interface of these monads in the effect.
+But in the state monad I don't understand how the resume works since it should only take one argument but he passes both the result and the state. Also the arguments in the put case are probably in the wrong order.
+It also composes very well, you can for example painlessly have async functions that also might throw errors which he says was hard to implemnt in current Javascript.
+
+* Questions
+** DONE Does an async effect also color functions?
+   CLOSED: [2020-02-22 Sa 23:53]
+No, they simply have async as their effect but functions that call them don't care about this. The callers also become essentially async but since there is no explicit `await` keyword the effect vanishes
+
+Something like
+: fun ask-name() : () -> <async,console> string {
+:   println("What's your name: ")
+:   val name = readline()
+:   return name
+: }
+: 
+: fun main() : () -> <console> () {
+:   val name = ask-name()
+:   println("hello " + name)
+: }
+
+** TODO why is the implementation of async-callback equivalent to `shift` in delimited continuations? @24:19
+** TODO Try out Koka locally, especially test/async2.kk since it uses the continuation twice.
+** DONE How do they compare against Common Lisp's [[https://en.wikibooks.org/wiki/Common_Lisp/Advanced_topics/Condition_System#Handlers][condition system]]?
+   CLOSED: [2020-02-23 So 13:21]
+They are essentially the same except that CL's condition system is untyped. A condition can be raised and then handled via a resume. If it's unhandled the evaluator drops you into a debug session where you can choose how to resume. This debugger is kind of an async handler, i.e. raise unhandled-condition -> handler at top level that handles all conditions -> raise async input from user -> resume with the input from user
+** TODO Condition systems with continuations vs dynamic binding?

@@ -1,0 +1,11 @@
+* Description
+The reader Monad `Reader e a` is basically a wrapper for a function e -> a. It gives you access to an `a` if you can supply an `e`. The do notation for Reader allows you to easily string together lookups that will all come from the same environment.
+The Reader can be used to do Dependency Injection where you pass a reader into a function and us can decide from the outside what will happen if the function accesses the Reader. The Behaviors of threepenny-gui are similar to Reader since they are functions from some instant in time to a value.
+Reader can also be used for an interpreter where the environment is the variable bindings and the result is a value. (Example)
+
+From the "An intuition on Context" tutorial: Adding read-only information to a function, then, exponentially increases the possible ways for the function to work.
+Since Reader is equivalent to a function and a function from a->b has |b|^|a| possible implementations this makes kinda sense. You can give exponentially many implementations to the function that takes a reader which could result in different outcomes.
+* Resources
+** DONE [[https://stackoverflow.com/questions/14178889/what-is-the-purpose-of-the-reader-monad][StackOverflow]] [[file:playground/src/monad-reader.lhs::>%20import%20Control.Monad.Reader][notes]]
+   CLOSED: [2020-02-28 Fr 21:26]
+** [[file:playground/src/intuition-on-context.lhs::The%20Reader%20Applicative%20instance%20allows%20you%20to%20apply%20functions%20that%20depend%20on%20an%20environment%20to%20values%20that%20depend%20on%20an%20environment.%20For%20example%20the%20line%20Plan%20<$>%20chooseTransport%20maps%20the%20Plan%20constructor%20over%20the%20chooseTransport%20Reader%20so%20that%20what's%20left%20is%20a%20`Reader%20Weather%20(Clothing%20->%20Plan)`,%20a%20function%20that%20depends%20on%20the%20weather%20itself.%20In%20the%20end,%20the%20chooseTransport%20and%20chooseClothing%20functions%20will%20get%20access%20to%20the%20same%20environment%20when%20the%20reader%20is%20run.%20This%20would%20allow%20us%20to%20execute%20all%20these%20in%20parallel%20but%20also%20means%20that%20we%20can't%20have%20any%20dependencies,%20like%20never%20wearing%20shorts%20if%20we%20take%20a%20bike.][Reader Applicative]]

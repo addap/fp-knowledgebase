@@ -1,0 +1,14 @@
+* Description
+Church encoding is a way of encoding datasctructures purely using the lamda calculus.
+* Examples
+tru = \t. \f. t
+fls = \t. \f. f
+as encodings of booleans. Pairs are the same I think.
+
+zro = \f. \n. n
+one = \f. \n. f n
+two = \f. \n. f f n
+...
+as church encoding of the integers
+* Resources
+** TODO [[http://www.haskellforall.com/2016/04/data-is-code.html?showComment=1467898064772#c3710112311512301556][Haskellforall church encoding compiler]]

@@ -1,0 +1,5 @@
+* Description
+Language extension for Haskell so that Type has kind Type (we collapse the type hierarchy)
+* Resources
+** TODO [[http://www.cs.nott.ac.uk/~psztxa/g53cfr/l20.html/l20.html][Can Prove Russels Paradox]]
+

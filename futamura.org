@@ -1,0 +1,33 @@
+* Description
+The 3 Futamura projections are 3 stages of secializing an interpreter on its input. An interpreter always gets as input the program it should interpret and the input to that program.
+
+We write specialize_L_T for a specializer written in language L that specializes programs in language T and * for a wildcard language.
+* Resources
+** DONE [[https://osa1.net/posts/2015-01-11-understanding-futamura-projections.html#fn2][Blog]]
+   CLOSED: [2020-02-26 Mi 21:59]
+** DONE [[https://news.ycombinator.com/item?id=7061591][Hacker News]]
+   CLOSED: [2020-02-26 Mi 22:16]
+** TODO [[file:~/programming/haskell/tests/src/Specializer.lhs][review this]]
+** Mattis' intuition using lambda calculus
+The specializer takes a function f and static input P and dynamic input x and specializes f on P to accept x.
+  m_y = \f. \P. \x. f P x 
+*** TODO where does he have that from? I think he mentioned a paper
+** TODO [[https://static.aminer.org/pdf/PDF/001/006/665/partial_evaluation_of_computation_process_an_approach_to_a_compiler.pdf][Partial Evaluation of Computation Process—An Approach to a Compiler-Compiler]]
+** TODO [[https://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-letter.pdf][Partial Evaluation and Program Generation]]
+* 1st Futamura Projection
+The first projection gives the specializer an interpreter i for language L written in some language T and the program p written in L. Then it accepts any dynamc input x.
+  m_y i p = \x. i p x
+
+specialize_*_T int int_prog, specialize an interpreter `int` written in T for a language L on its input program `int_prog` written in L. This gives us a compiled version of `int_prog` in language T.
+* 2nd Futamura Projection
+The second projection gives the specializer itself as the first argument and the interpreter as second. This results in a compiler that accepts any programs written in T which it then converts into compiled programs in S.
+  m_y m_y i = \p. m_y i p
+
+specialize_T_T specialize_T_T int, we specialize the specializer on an interpreter `int`. This will output a program in language T which is a compiler for the language L that `int` interprets. Notice that now specialize needs to be written in the language it specializes which is pretty hard in general.
+* 3rd Futamura Projection
+The third projection gives the specializer itself as both arguments. This gives you a compiler-generator where you can input an interpreter written in any language T' which is then used to compile programs written in any language S'.
+  m_y m_y m_y = \i. m_y m_y i
+
+specialize_T_T specialize_T_T specialize_T_T, we specialize the specializer on the specializer. This takes as input an interpreter written in T and gives us a compiler for its language L. This is better than the 2nd projection since it specializes more I guess, i.e. applies more optimizations.
+* TODO [[https://www.gwern.net/docs/cs/2009-gluck.pdf][4th Futamura Projection?]]
+Matthis hinted that you can do more. I asked him if he meant something like Black (tower of interpreter) by Kenichi Asai which he affirmed but I'm not sure anymore if that's the correct analogy.

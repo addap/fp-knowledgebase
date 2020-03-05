@@ -1,0 +1,31 @@
+* Description
+** If f is a Functor then the Free Monad on f is the type of trees whose nodes are labeled with the constructors of f.
+A Free Monad seems to be a data structure that fulfills the Monad laws and nothing else. The meaning of the Free Monad can then be supplied by something else. It seems to be used in the "Free Monad + Interpreter" pattern to model a DSL.
+A Free Monad is a Monad that does nothing during the normalization step (join) beyond just grafting the two monadic values together. 
+They "free the interpreter" by splitting up program interpretation (semantics) from the program as it is written (syntax) of a DSL expressed as a simple functor datatype wrapped inside the Free Monad. You can either interpret the datastructure into a final monadic value like an IO (), or compile it into another free monad representing a lower level language that gives different guarantees.
+* Resources
+** DONE [[https://stackoverflow.com/questions/13352205/what-are-free-monads?rq=1][StackOverflow]]
+** DONE [[http://www.haskellforall.com/2012/06/you-could-have-invented-free-monads.html][HaskellForAll]], [[file:playground/src/free-monad2.lhs::>%20{-#%20LANGUAGE%20StandaloneDeriving,%20UndecidableInstances,%20DeriveFunctor,%20EmptyDataDeriving%20#-}][implementation]]
+** DONE Free Monad + Interpeter [[https://softwareengineering.stackexchange.com/questions/242795/what-is-the-free-monad-interpreter-pattern][1]], [[https://stackoverflow.com/questions/23766419/when-would-i-want-to-use-a-free-monad-interpreter-pattern][2]]
+An interesting fact one of the answers talks about is how you can translate your functor into a typeclass, which has one function per constructor of the functor, and back. 
+*** DONE what is meant by: Free monads are also a normalized program representation that makes it impossible for the interpreter to distinguish between programs whose do-notation is different but actually "mean the same."
+Probably that the do-blocks all get translated into the data structure consisting of the free monad and the functor and this datastructure is normalized. Since the "meaning" only comes from the interpreter that gets the datasctructure as input this normalization is a natural consequence.
+** TODO [[http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf][Data Types a la Carte]]
+** TODO [[http://blog.higher-order.com/blog/2013/11/01/free-and-yoneda/][Free Monad and Yoneda]]
+** DONE [[https://www.youtube.com/watch?v=M258zVn4m2M][Runar Bjarnason Composable application architecture with reasonably priced monads]]
+In this talk, Bjarnason uses a slightly different definition of the Free Monad using Bind instead of Suspend.
+*** TODO implement the Free Monad with Bind instead of Suspend
+If that makes sense in Haskell
+** DONE The Interpreter Pattern Revisited, [[file:playground/src/free-monad.lhs::>%20{-#%20LANGUAGE%20StandaloneDeriving,%20UndecidableInstances%20#-}][implementation]]
+@15:40 looks very similar to the Free Monad. He has an extra function in the fold for each case but that's the same as fmapping over the ADT with a function that pattern matches on the constructor, which happens in the Free Monad implementation.
+I don't think his example of the formula language is very good b/c it does not seem to fit the Free Monad pattern of an imperative language. The way I implemented it right now it does not use the monadic structure at all and just turns into a single Impure cell.
+*** TODO is there a way I can implement a stack based formula language?
+Maybe not with the Free Monad but with another construction.
+** TODO [[http://blog.higher-order.com/assets/trampolines.pdf][Stackless Scala with Free Monads]]
+** TODO [[http://comonad.com/reader/2008/monads-for-free/][Edward Kmett Monads For Free]]
+** TODO [[http://comonad.com/reader/2011/free-monads-for-less/][Edward Kmett Free Monads For Less]]
+** TODO [[http://fumieval.hatenablog.com/entry/20121111/1352624678][GOTOs using Free Monads]] and [[http://fumieval.hatenablog.com/entry/20121111/1352642335][more]] (referenced on HaskellForAll)
+** TODO [[http://www.haskellforall.com/2012/07/purify-code-using-free-monads.html][Purify Code Using Free Monads]]
+** TODO [[https://www.youtube.com/watch?v=U0lK0hnbc4U][Why the Free Monad isn't free]]
+** DONE [[https://www.youtube.com/watch?v=ycrpJrcWMp4][Free Monads in Scala]] 
+Gives a good example where you have a high-level language that works on accounts and logging in etc which gets translated into a lower-level language that works on a kv-store.

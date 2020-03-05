@@ -1,0 +1,19 @@
+* Description
+State = the State monad
+state = the state of a State, i.e. (a, _s_)
+result = the resulst of a State, i.e. (_a_, s)
+A value of type State s a represents a function from some initial state s to a final result and state (a, s). The do notation is very handy fo this monad since you can just use get's and put's to "update" the state but actually these functions return new State's that capture the change that "get" and "put" should have on a state. Having the State not as a "memory location" that you act on with functions but as a function itself is a great idea but it took me some time to wrap my head around.
+
+do { x <- get; put (x + 1); return 'X' } = get >>= \x -> put (x+1) >>= \() -> return 'X'
+get is a State that sets the result to the state. the >>= passes only the result to the next function which it uses to create a new State (put :: a -> State a ()) with the result as the state and () as the result. The () gets passed to the next function which just throws it away and sets the result to X. This forms a combined State in the end which will take the inital state and increment it by one while setting the result to 'X'.
+
+* Resources
+** TODO [[http://web.cecs.pdx.edu/~mpj/pubs/springschool.html][Mark P. Jones Paper]]
+** DONE [[https://wiki.haskell.org/State_Monad][HaskellWiki Tutorial]] [[file:playground/src/state.lhs::>%20import%20Control.Monad.State][notes]]
+** TODO [[https://en.wikibooks.org/wiki/Haskell/Understanding_monads/State][HaskellWiki]]
+** [[file:playground/src/intuition-on-context.lhs::The%20State%20Applicative][State Applicative]]
+* Questions
+** DONE why is there the special MonadState typeclass? [[https://stackoverflow.com/questions/39124578/haskell-monadstate][SO]] [[https://en.wikibooks.org/wiki/Haskell/Understanding_monads/State][HaskellWiki]] 
+According to the [[https://stackoverflow.com/a/39125885/12035298][SO answer]] it to abstract out the get and put functions so that you can add state handling to other monads like Maybe and IO. The "normal" state monad is then just a type synonym which uses the Identity monad in StateT.
+** DONE while playing around with the tutorial I tried to use modify on a state that was a pair and had to define a function combine :: (a -> b) -> (c -> d) -> (a,c) -> (b,d)
+I was able to find it on hoogle. It's (***) from Data.Tuple.Extra 
