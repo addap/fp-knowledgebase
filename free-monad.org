@@ -19,13 +19,13 @@ If that makes sense in Haskell
 ** DONE The Interpreter Pattern Revisited, [[file:playground/src/free-monad.lhs::>%20{-#%20LANGUAGE%20StandaloneDeriving,%20UndecidableInstances%20#-}][implementation]]
 @15:40 looks very similar to the Free Monad. He has an extra function in the fold for each case but that's the same as fmapping over the ADT with a function that pattern matches on the constructor, which happens in the Free Monad implementation.
 I don't think his example of the formula language is very good b/c it does not seem to fit the Free Monad pattern of an imperative language. The way I implemented it right now it does not use the monadic structure at all and just turns into a single Impure cell.
-*** TODO is there a way I can implement a stack based formula language?
-Maybe not with the Free Monad but with another construction.
+*** DONE is there a way I can implement a stack based formula language?
+Yes I was able to have the stack in the interpreter. But was not able to write it using foldFree. Had to use explicit recursion in the interpreter instead.
 ** TODO [[http://blog.higher-order.com/assets/trampolines.pdf][Stackless Scala with Free Monads]]
 ** TODO [[http://comonad.com/reader/2008/monads-for-free/][Edward Kmett Monads For Free]]
 ** TODO [[http://comonad.com/reader/2011/free-monads-for-less/][Edward Kmett Free Monads For Less]]
 ** TODO [[http://fumieval.hatenablog.com/entry/20121111/1352624678][GOTOs using Free Monads]] and [[http://fumieval.hatenablog.com/entry/20121111/1352642335][more]] (referenced on HaskellForAll)
 ** TODO [[http://www.haskellforall.com/2012/07/purify-code-using-free-monads.html][Purify Code Using Free Monads]]
-** TODO [[https://www.youtube.com/watch?v=U0lK0hnbc4U][Why the Free Monad isn't free]]
+** DONE [[https://www.youtube.com/watch?v=U0lK0hnbc4U][Why the Free Monad isn't free]]
 ** DONE [[https://www.youtube.com/watch?v=ycrpJrcWMp4][Free Monads in Scala]] 
 Gives a good example where you have a high-level language that works on accounts and logging in etc which gets translated into a lower-level language that works on a kv-store.

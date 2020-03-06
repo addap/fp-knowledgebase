@@ -1,4 +1,4 @@
-> {-# LANGUAGE StandaloneDeriving, UndecidableInstances, ExistentialQuantification #-}
+> {-# LANGUAGE StandaloneDeriving, UndecidableInstances, ExistentialQuantification, DeriveFunctor #-}
 > 
 > module Free where
 >
@@ -69,63 +69,68 @@ The Pure case (an consequently the r) are never used with BoolAlg since fmapping
 > foldFree r g (Pure a) = r a
 > foldFree r g (Suspend fa) = g (fmap (foldFree r g) fa)
 
-Try out the Free Monad Interpreter example using Formulas.
-We first define our boolean algebra and then boolean expressions using the algebra and Free.
+
+I first tried defining the boolean algebra from Runar's talk like this but this is wrong. I though I needed explicit recursion in the And case but I don't. That's what the free monad is there for, it builds the fixed point of the type.
+A type like this would not lead to an interesting free monad because it does not compose since none of the constructors have an `a` which is where the link to the rest of the program is.
 
 > data BoolAlg a = Lit Bool | And (BoolAlg a) (BoolAlg a) | Var String deriving (Show)
 
-I need the a to make it a functor but it's actually never used. Is that a Phantom Type? Apparently not because Phantom Types don't appear at all on the right hand side but the a does, but it's still never used. Normally you would use it to hold the next step of the computation but our formulas don't have this imperative concept.
 
-> instance Functor BoolAlg where
->   fmap f (Lit b) = Lit b
->   fmap f (And e1 e2) = And (fmap f e1) (fmap f e2)
->   fmap f (Var v) = Var v
+This works without the explicit recursion in the type but it's still not very interesing. And I find the branching behavior that occurs since the And2 case has two `a` not appropriate for the boolean formulas here. e.g. in formula2 the last `lit2 False` gets mapped over the preceding expression so they all have a (Lit2 False (Pure ())) at the leafs.
+Also, what exactly is happening inside the and2?
+I'm not sure how to interpret one of these either. The only way would be if there is only one statement in the do block so that the weird branching behavior does not appear but in that case the whole construction does not make sense to begin with.
+
+> data BoolAlg2 a = Lit2 Bool a | And2 a a deriving (Functor, Show)
+> type BoolExp2 a = Free BoolAlg2 a
 >
-> type BoolExp a = Free BoolAlg a
+> lit2 :: Bool -> BoolExp2 ()
+> lit2 b = liftFree $ Lit2 b ()
+> and2 :: (BoolExp2 a) -> (BoolExp2 a) -> BoolExp2 a
+> and2 t1 t2 = do
+>   joinFree $ liftFree $ And2 t1 t2
+> formula2 :: BoolExp2 ()
+> formula2 = do
+>   and2
+>     (do and2 (lit2 True) (lit2 True))
+>     (lit2 True)
+>   lit2 False
+          
+If I try it with one a I get a "nice" imperative syntax and I can even write an interpreter for it that uses a stack of previous results (idea from the "Compile Time Parsing" functional pearl paper but without type safety)
+
+> data BoolAlg3 a = Lit3 Bool a | And3 a | Or3 a deriving (Functor, Show)
+> type BoolExp3 a = Free BoolAlg3 a
 >
-> evalFormula :: (String -> BoolAlg a) -> BoolAlg a -> Bool
-> evalFormula _ (Lit b) = b
-> evalFormula env (And e1 e2) = (evalFormula env e1) && (evalFormula env e2)
-> evalFormula env (Var v) = evalFormula env $ env v
-
-> printFormula :: (String -> BoolAlg a) -> BoolAlg a -> String
-> printFormula _ (Lit b) = show b
-> printFormula env (And e1 e2) = "(" ++ (printFormula env e1) ++ " && " ++ (printFormula env e2) ++ ")"
-> printFormula env (Var v) = "'" ++ v ++ "'=" ++ (printFormula env $ env v)
+> lit3 :: Bool -> BoolExp3 ()
+> lit3 b = liftFree $ Lit3 b ()
+> and3 :: BoolExp3 ()
+> and3 = liftFree $ And3 ()
+> or3 = liftFree $ Or3 ()
 >
-> negFormula :: BoolAlg a -> BoolAlg a
-> negFormula (Lit b) = Lit $ not b
-> negFormula (And e1 e2) = And (negFormula e1) (negFormula e2)
-
-> formula :: BoolAlg a
-> formula = And (Lit True) (Var "x")
-> formulaF :: BoolExp a
-> formulaF = liftFree formula
-> env :: String -> BoolAlg a
-> env = (\x -> if x == "x" then And (Var "y") (Lit True) else Lit True)
-> x1 = foldFree id (evalFormula env) formulaF
-> x2 = foldFree id (printFormula env) formulaF
-> x3 = negFormula formula
+> formula3 :: BoolExp3 ()
+> formula3 = do
+>   and3
+>   or3
+>   lit3 False
+>   lit3 False
+>   lit3 True
 >
-
-I don't use the a in the BoolAlg constructors directly, only as a means to write a Functor instance. In his `Interpreter Pattern Revisited` talk, Runar Bjarnason talks about how you could use that a as identifiers for variables. But when I try to add that (a = String and adding env arguments to the eval and print functions) it does not work since my foldFree takes an (f b -> b) argument, so the a always has to be the same as the result type so evalFormula :: BoolAlg String -> Bool does not work. I think that's an error on Runar's part, or things work differently in Scala than in Haskell. 
-
-If I define smart constructors for my algebra here, they all behave like the `done` case in the free-monad2.lhs example. Since none of them wrap an `a` you can't compose them.
-Something like this would be practical
-do x <- lit True
-   y <- and x x
-   return y
-I can already do it a little bit by using the correct constructors instead of the <- syntax but I'm wondering if each of the Constructors could pass "itself" to the next bound function.
-
-> lit b = liftFree (Lit b)
-> and t1 t2 = liftFree (And t1 t2)
-> var s = liftFree (Var s)
-> test :: BoolExp a
-> test = do
->   let x = Lit True
->   and x x
+> evalBool3 :: BoolExp3 () -> Bool
+> evalBool3 fm = eval fm [False] !! 0
+>   where eval :: BoolExp3 () -> [Bool] -> [Bool]
+>         eval (Pure _) [] = []
+>         eval (Pure _) bs = False <$ bs
+>         eval (Suspend (Lit3 b next)) (_:br) =
+>           let rs = eval next br
+>           in b : rs
+>         eval (Suspend (And3 next)) (_:br) =
+>           let (t1:t2:rs) = eval next (False : False : br)
+>           in (t1 && t2) : rs
+>         eval (Suspend (Or3 next)) (_:br) =
+>           let (t1:t2:rs) = eval next (False : False : br)
+>           in (t1 || t2) : rs
+>         
 
 
 This might be how the other definition (from Runar Bjarnason's talk Composable application architecture with reasonably priced monads) of the Free Monad would look like. He uses scala where you can apparently use a new type variable in constructors, I had to use forall i here but I have no idea what the consequences of that are.
 
-> data Free2 f a = Pure2 a | forall i. Bind (f i) (i -> Free2 f a)
+data Free f a = Pure a | forall i. Bind (f i) (i -> Free2 f a)
