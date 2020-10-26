@@ -25,5 +25,6 @@ executable playground
                      , comonad
                      , free
                      , distributive
-                     , adjunctions <= 4.3
+                     , adjunctions <= 4.4
                      , containers
+                     , tagged

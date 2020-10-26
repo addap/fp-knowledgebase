@@ -1,53 +1,82 @@
 * Haskell
-** TODO Impredicativity
-** TODO Typeable
-** TODO [[file:rank-n-types.org::*Description][Rank-N-Types]]
-** TODO Existential Types
-** TODO Functional Dependency
-** TODO Phantom Type
-** TODO [[file:typeintype.org::*Description][TypeInType]]
-** TODO Type Classes
-** TODO Monomorphism Restriction
-** TODO [[file:zippers.org::*Description][Zippers and Derivatives of Types]]
-** TODO Open and closed Type Classes
-** TODO [[file:continuation.org::*Description][Continuation Monad]]
-** TODO Ideal Monads
-** TODO [[file:free-monad.org::*Description][Free Monads]]
-** TODO [[file:free-applicatives.org::*Description][Free Applicatives]]
-** TODO [[file:cofree-comonad.org::*Description][Cofree Comonads]]
-** TODO Contravariant Functors
-** TODO [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#arrow-notation][Arrow Notation]]
-** TODO [[file:monads.org::*Description][Monads/Applciatives/Functors]]
-** TODO [[file:adjunctions.org::*Description][Adjunctions]]
-** TODO [[file:state.org::*Description][State Monad]]
-** DONE [[file:reader.org::*Description][Reader Monad]]
-** DONE [[file:writer.org::*Description][Writer Monad]]
-** TODO [[file:comonads.org::*Description][Comonads]]
-** TODO [[file:recursion-schemes.org::*Description][Recursion Schemes]]
-** TODO fixpoint function
-** TODO [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#constraint-kind][ConstraintKinds]] and its example in FlexibleContexts
-** TODO MonoLocalbinds why the warning [[file:comonads.hs::--%20instance%20(Show%20(Stream%20a))%20=>%20Show%20(Tape%20a)%20where][here]]
+** Typeable
+** [[file:rank-n-types.org::*Description][Rank-N-Types]]
+** [[file:type-families.org::*Description][Type Families]]
+** Existential Types
+** Functional Dependency
+Are multi parameter typeclasses with functional dependencies equivalent to type families? similar to what's done [[https://mail.haskell.org/pipermail/haskell/2006-August/018355.html][here]].
+** [[https://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][Phantom Types]]
+** [[file:typeintype.org::*Description][TypeInType]]
+** Type Classes
+** Monomorphism Restriction
+** [[file:zippers.org::*Description][Zippers and Derivatives of Types]]
+** Open and closed Type Classes
+** [[file:continuation.org::*Description][Continuation Monad]]
+** Ideal Monads
+** Data types a la carte
+** [[http://comonad.com/reader/2008/deriving-strength-from-laziness/][Strong Monads]]
+** [[file:lenses.org::*Lenses][Lenses/Optics]]
+** [[file:gadts.org::*Description][GADTs]]
+** [[file:free-monad.org::*Description][Free Monads]]
+** [[file:free-applicatives.org::*Description][Free Applicatives]]
+** [[file:cofree-comonad.org::*Description][Cofree Comonads]]
+** Contravariant Functors
+** [[file:arrows.org::*Description][Arrows]]
+** [[file:state.org::*Description][State Monad]]
+** [[file:reader.org::*Description][Reader Monad]]
+** [[file:writer.org::*Description][Writer Monad]]
+** [[file:comonads.org::*Description][Comonads]]
+** Functional Data Structures
+** [[file:recursion-schemes.org::*Description][Recursion Schemes, F-Algebras and Fixpoint Types]]
+** [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#constraint-kind][ConstraintKinds]] and its example in FlexibleContexts
+** MonoLocalbinds why the warning [[file:playground/src/quick-fix-on-comonads.hs::instance%20Show%20a%20=>%20Show%20(Stream%20a)%20where][here]]
 *** [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/jfp-outsidein.pdf][Paper]], [[http://ghc.haskell.org/trac/ghc/blog/LetGeneralisationInGhc7][Blog]]
 *** I think it was just because I was adding an unneccessary constraint
-** TODO Data.Functor.Compose
-** TODO Traversable, Jaskeliov & Rypacek MSFP 2012
-** TODO M. P. Jones & Shield, Composing Monads
+** Data.Functor.Compose
+** Traversable, Jaskeliov & Rypacek MSFP 2012
+** M. P. Jones & Shield, Composing Monads
 * Coq
-** TODO do the proof for Falsity <=> Foo from Alexander
-** TODO is the Stream type from [[file:comonads.hs::data%20Stream%20a%20=%20Cons%20a%20(Stream%20a)][here]] isomorphic to Foo/can we write one that is still equivalent to Falsity in Coq?
+** do the proof for Falsity <=> Foo from Alexander
+** is the Stream type from [[file:comonads.hs::data%20Stream%20a%20=%20Cons%20a%20(Stream%20a)][here]] isomorphic to Foo/can we write one that is still equivalent to Falsity in Coq?
 ** [[http://gallium.inria.fr/blog/incremental-cycle-detection/][Proving Asymptotic Bounds with Coq]]
+** [[file:positivity-condition.org::*Positivity%20Condition][Positivity Condition]]
+* Category Theory
+** [[file:category-theory.org::*Description][Miscellaneous]]
+** [[file:monads.org::*Description][Monads/Applciatives/Functors]]
+** [[file:adjunctions.org::*Description][Adjunctions]]
+** [[file:yoneda-lemma.org::*Decription][Yoneda Lemma]]
+** [[file:lawveres-theorem.org::*Description][Lawvere's Theorem]]
 * Type Theory
-** TODO Tagless Final Style
-** TODO [[file:dependent-types.org::*Description][Dependent Types]]
-** TODO [[file:algebraic-effects.org::*Description][Algebraic Effects]]
-** TODO [[file:continuation.org::*Description][(Delimited) Continuations]]
-** TODO [[https://www.cs.bham.ac.uk/~pbl/mgs2014lam.html][Typed Lambda Calculus]]
-** TODO Black von Kenichi Asai
-** TODO Church Encoding
-** TODO row types
-** TODO indexed types
-** TODO inductive, coinductive and [[http://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt][recursive types]]
+** [[file:polymorphism.org::*Description][Parametric/Ad-hoc polymorphism]]
+** Predicativity/Impredicativity
+Predicativity is when a type variable in a type can not be instantiated with the type itself. e.g. in T = forall X. X -> X, X can not be T.
+Impredicativity is when it is possible.
+What does Haskell use and what are the upsides/downsides?
+** Parametricity
+** [[file:lambda-cube.org::*Description][Lambda Cube]]
+** [[file:polymorphic-recursion.org::*Description][Polymorphic Recursion]]
+** [[file:monomorphization.org::*Description][Monomorphization]]
+** [[file:tagless-final.org::*Description][Tagless Final Style]]
+** [[file:linear-types.org::*Description][Linear Types]]
+** [[file:type-checking.org::*Description][Type Checking]]
+** [[file:phantom-types.org::*Description][Calculus of Constructions]]
+** [[file:normalization.org::*Description][Normalization]]
+** [[file:dependent-types.org::*Description][Dependent Types]]
+** [[file:algebraic-effects.org::*Description][Algebraic Effects]]
+** [[file:continuation.org::*Description][(Delimited) Continuations]]
+** [[https://www.cs.bham.ac.uk/~pbl/mgs2014lam.html][Typed Lambda Calculus]]
+** Black von Kenichi Asai
+** Church Encoding
+** row types
+** [[file:indexed-types.org::*Description][indexed types]]
+** [[file:inductive-type.org::*Inductive%20Types][Inductive and Coinductive types]]
+** [[https://legacy.cs.indiana.edu/~sabry/papers/rational.pdf][Negative and Fractional Types]]
+** [[file:denotational-semantics.org::*Description][Domain Theory]]
+** [[https://github.com/andrejbauer/homotopy-type-theory-course][Homotopy Type Theory]]
+** [[file:intuitionistic-type-theory.org][Intuitionistic Type Theory]]
 * Misc
-** TODO [[file:futamura.org::*Description][Futamura Projections]]
-** TODO [[file:partial-evaluation.org::*Description][Partial Evaluation]]
-   
+** [[file:futamura.org::*Description][Futamura Projections]]
+** [[file:partial-evaluation.org::*Description][Partial Evaluation]]
+** [[file:frp.org::*Description][FRP]]
+** [[http://thecorememory.com/Next_700.pdf][The Next 700 Programming Languages]]
+** [[file:tapl.org::*Description][TAPL]]

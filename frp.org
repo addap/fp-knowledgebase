@@ -1,0 +1,6 @@
+* Description
+Programming with events and behaviors.
+* Resources
+** TODO [[http://conal.net/papers/push-pull-frp/][Conal's paper where he defines the semantics]]
+** TODO [[https://www.youtube.com/watch?v=zzCrZEil9iI][Presentation by Conal]]
+** TODO [[https://github.com/gelisam/frp-zoo][FRP zoo]]

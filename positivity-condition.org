@@ -1,0 +1,18 @@
+* Positivity Condition
+In some programming languages, like Coq, we have a condition that a type may only appear recursively in strictly positive positions when defining it (i.e. after the rightmost function arrow). Because that ensures that a smallest solution to the type equation exists. (e.g. all derivations terminate)
+
+An example of how not having the strict positivity condition would lead to wrong behavior is this.
+
+Inductive term : Set :=
+| App : term -> term -> term
+| Abs : (term -> term) -> term.
+
+Definition uhoh (t : term) : term :=
+  match t with
+    | Abs f => f t
+    | _ => t
+  end.
+
+Compute (uhoh (Abs uhoh)).
+
+in which the Compute would diverge.

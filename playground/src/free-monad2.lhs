@@ -5,7 +5,6 @@
 The datatype for our toy language consists of outputting stuff, calling a bell and an end marker. The next type variable is used to carry the rest of the program.
 
 > data Toy b next = Output b next | Bell next | Done deriving (Show, Functor)
-> --data Toy2 b next = Output2 b next next | Bell2 next deriving (Show, Functor)
 
 You can already write programs in it, but the type changes if you add more commands.
 

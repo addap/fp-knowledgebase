@@ -3,3 +3,5 @@ An analog of free monads but for comonads. Not sure why they are called cofree.
 * Resources
 ** TODO [[http://comonad.com/reader/2008/the-cofree-comonad-and-the-expression-problem/][Edward Kmett Cofree Comonad]]
 ** TODO [[https://stackoverflow.com/questions/38816993/what-are-some-motivating-examples-for-cofree-comonad-in-haskell][Examples of Cofree Comonads]]
+** TODO [[https://reasonablypolymorphic.com/blog/cofree-comonads/][Wake Up and Smell the Cofree Comonads]]
+** TODO [[https://www.schoolofhaskell.com/user/edwardk/moore/for-less][Moore for less]]

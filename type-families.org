@@ -1,0 +1,3 @@
+* Description
+* Resources
+** TODO [[https://bahr.io/pubs/files/serrano15haskell-paper.pdf][Type Families and Type Classes]]

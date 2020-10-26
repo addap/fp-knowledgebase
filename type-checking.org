@@ -1,0 +1,6 @@
+* Description
+* Resources
+** TODO [[https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.6.6483&rep=rep1&type=pdf][Typechecking and Typability in System F are equivalent and undecidable]]
+** TODO [[https://gitlab.haskell.org/ghc/ghc/blob/master/docs/core-spec/core-spec.pdf][Haskell's System FC]]
+** TODO [[https://www.cs.kent.ac.uk/people/staff/srk21/research/papers/kell14in-author-version.pdf][In Search of Types]]
+** TODO [[https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.225.8568&rep=rep1&type=pdf][Lambda Calculi with Types]]

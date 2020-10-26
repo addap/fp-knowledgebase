@@ -3,3 +3,4 @@ Seems to be a way to encode DSL.
 * Resources
 ** TODO Talk on YT which compares it to the free monad approach
 ** TODO [[http://okmij.org/ftp/tagless-final/][okmij]]
+** TODO [[http://www.cse.chalmers.se/~josefs/DSLTutorial/tutorialSlides.html][Deep/Shallow/Tagless Final]]

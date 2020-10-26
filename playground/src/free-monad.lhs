@@ -133,4 +133,4 @@ If I try it with one a I get a "nice" imperative syntax and I can even write an 
 
 This might be how the other definition (from Runar Bjarnason's talk Composable application architecture with reasonably priced monads) of the Free Monad would look like. He uses scala where you can apparently use a new type variable in constructors, I had to use forall i here but I have no idea what the consequences of that are.
 
-data Free f a = Pure a | forall i. Bind (f i) (i -> Free2 f a)
+data Free2 f a = Pure2 a | forall i. Bind (f i) (i -> Free2 f a)

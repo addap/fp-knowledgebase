@@ -1,3 +1,5 @@
 * Description
 * Resources
-** [[https://stackoverflow.com/questions/12031878/what-is-the-purpose-of-rank2types][StackOverflow]]
+** TODO [[https://stackoverflow.com/questions/12031878/what-is-the-purpose-of-rank2types][StackOverflow]]
+** TODO [[https://wiki.haskell.org/Rank-N_types][HaskellWiki]]
+** TODO [[https://sleepomeno.github.io/blog/2014/02/12/Explaining-Haskell-RankNTypes-for-all/][Explaining Haskell RankNTypes for All]]

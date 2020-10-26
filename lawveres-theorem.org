@@ -1,0 +1,6 @@
+* Description
+Result from Category Theory.
+* [[https://math.stackexchange.com/questions/2823016/y-combinator-as-an-application-of-lawveres-fixed-point-theorem][We can get the Y Combinator of the untyped lambda calculus]]
+* Resources
+** DONE [[https://ncatlab.org/nlab/show/Lawvere%2527s+fixed+point+theorem][nLab]]
+** TODO [[https://arxiv.org/pdf/math/0305282.pdf][Universal Approach to Self-Referential Paradoxes, Incompleteness and Fixpoints]]

@@ -1,0 +1,9 @@
+* Description
+Used to give a mathematical meaning to programs, especially useful when focusing on recursive/divergent programs.
+From wikipedia: "The fact that lambda calculus terms act as functions on other lambda calculus terms, and even on themselves, led to questions about the semantics of the lambda calculus. Could a sensible meaning be assigned to lambda calculus terms? The natural semantics was to find a set D isomorphic to the function space D → D, of functions on itself. However, no nontrivial such D can exist, by cardinality constraints because the set of all functions from D to D has greater cardinality than D, unless D is a singleton set. In the 1970s, Dana Scott showed that, if only continuous functions were considered, a set or domain D with the required property could be found, thus providing a model for the lambda calculus. " So denotational semantics seem to be related to models.
+** This is also similar to when I tried finding a category for untyped lambda calculus because the object D should be equivalent to D^D (or D -> D) 
+* Resources
+** TODO [[http://www.cs.nott.ac.uk/~pszgmh/domains.html][Domain Theory course]]
+** TODO [[https://en.wikibooks.org/wiki/Haskell/Denotational_semantics][Denotational Semantics in Haskell]]
+** TODO [[http://math.andrej.com/2016/08/06/hask-is-not-a-category/][Hask is not a category]]
+Why we might need a denotational semantics for Haskell so that we can define a category oh haskell types (and seq is evil)

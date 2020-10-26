@@ -1,0 +1,6 @@
+* Description
+Some kind of generalization of functions?
+* Resources
+** TODO [[https://gergo.erdi.hu/blog/2014-07-12-arrow's_place_in_the_applicative_monad_hierarchy/][Arrows Place in the Applicative/Monad hierarchy]]
+** TODO [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#arrow-notation][Arrow Notation]]
+** TODO [[https://arxiv.org/abs/1007.2885][Multi-level languages are generalized arrows]]

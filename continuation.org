@@ -11,3 +11,5 @@ Continuation Passing Style is a compilation technique where each function f(a) =
 ** TODO [[https://en.m.wikibooks.org/wiki/Haskell/Continuation_passing_style][Continuation Passing Style]]
 ** DONE [[https://www.ps.uni-saarland.de/~duchier/python/continuations.html][Continuations Made Simple]]
 The validator is I think implemented the same way in SICP
+** TODO [[file:~/Documents/Compsci/papers/First-class%20continuations%20in%20ML.pdf][First-class continuations in ML]]
+** TODO [[https://era.ed.ac.uk/bitstream/handle/1842/393/ECS-LFCS-97-376.pdf][Categorical Structure of CPS]]

@@ -1,0 +1,14 @@
+* Inductive and Coinductive Types
+Inductive Types are a form of types specified by inductive definitions. These definitions are solutions to "type equations" like
+
+\[
+N = \mathtt{unit} + N
+\]
+
+The smallest solution to such a type equation is the inductive type and the largest is the coinductive type. 
+* TODO the poster remarks that the solutions are the "initial algebra" and the "final coalgebra". How?
+
+* Questions
+** DONE [[https://cs.stackexchange.com/questions/81627/positivity-condition-in-coq-cic?rq=1][Informal Explanation]]
+** TODO is that in any way connected to [[https://debasishg.blogspot.com/2012/01/learning-type-level-fixpoint-combinator.html][fixpoint types like mu]]?
+

@@ -2,3 +2,4 @@
 The fix function seems to enable general unbounded recursion, i.e. making a language turing complete if I understood correctly.
 * Resources
 ** TODO [[https://en.wikibooks.org/wiki/Haskell/Fix_and_recursion][HaskellWiki]]
+** TODO [[http://okmij.org/ftp/Computation/fixed-point-combinators.html][Many faces of the fixpoint combinator]]

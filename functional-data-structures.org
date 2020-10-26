@@ -1,0 +1,3 @@
+* Description
+* Resources
+** TODO [[https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf][Purely Functional Data Structures]]

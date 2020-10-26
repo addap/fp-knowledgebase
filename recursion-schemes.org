@@ -1,9 +1,38 @@
 * Description
-Is that something like a further generalization of fold or map?
+Recursion schemes are a way to generalize recursion over a datatype in a function which you can then use in any function on that datatype and don't have to explicitly write the recursion yourself every time. An example would be a fold on lists.
+** How do we get to recursion schemes.
+You can often (always?) transform a recursive datatype into a functor by replacing each recursive position in the constructors with a type variable `a` which will then be the type variable of the functor. Then you have a flat type without recursion and can reconstruct the original recursive type by taking the fixpoint of your functor.
+Then you can write an f-algebra (anything of type f a -> a) to evaluate your functor for a specific carrier type `a` and can build recursion schemes like a catamorphism which work on the fixpoint version of your functor.
+** Why?
+From what I understand, each f-algebra gives an interpretation of your datatype. Normally if you want to interpret your recursive datatype you need to write each interpreter individually and they are not composable.
+With f-algebras you encapsulate only the most general ideas of how you would want to interpret your datatype, without doing recursion, and can write recursive function like a catamorphism to apply them to an expression of your datatype. Then you can also write other functions similar to a catamorphism that might apply two algebras at once, side by side, or might first apply one algebra and then another etc.
+** Duality
+Of course there's also a dual for this, coalgebras, corecursion and codata but I have no idea yet how they behave.
+* [[file:playground/src/recursion-schemes.hs::module%20RecursionSchemes%20where][Haskell]]
 * Resources
 ** TODO [[https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf][Bananas, Lenses, Envelopes and Barbed Wire]]
-** TODO [[https://hackage.haskell.org/package/data-fix-0.2.0/docs/Data-Fix.html][Seems to have something to do with the Fix datatype]]
+** TODO [[http://www.cs.ox.ac.uk/jeremy.gibbons/publications/urs.pdf][Unifying Structured Recursion Schemes]]
+** TODO [[https://bartoszmilewski.com/2013/06/10/understanding-f-algebras/][Understanding F-Algebras]]
+** TODO [[https://medium.com/@olxc/catamorphisms-and-f-algebras-b4e91380d134][Catamorphisms and F-Algebras]]
+** TODO [[https://www.schoolofhaskell.com/user/edwardk/recursion-schemes/catamorphisms][Edward Kmett on Catamorphisms]]
 ** TODO [[https://github.com/sellout/recursion-scheme-talk/blob/master/recursion-scheme-talk.org][Fix Haskell (by eliminating recursion)]]
 ** TODO [[https://jtobin.io/practical-recursion-schemes][Practical Recursion Schemes]]
 ** TODO [[http://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt][Recursive Types by Wadler]]
-
+** TODO [[https://mpickering.github.io/posts/2014-11-27-pain-free.html][Pain Free Unfix With Pattern Synonyms]]
+** TODO [[https://haslab.uminho.pt/alcino/publications/recursion-patterns-hylomorphisms][Recursion Patterns as Hylomorphisms]]
+** TODO [[https://debasishg.blogspot.com/2012/01/learning-type-level-fixpoint-combinator.html][Learning Type Level Fixpoint Operator]]
+** TODO [[https://stackoverflow.com/questions/35918279/define-fix-point-combinator-in-continuation-passing-style][Define Fix Point Combinator for CPS]]
+** TODO [[https://jto.github.io/articles/typelevel-fix/][Typelevel Fixpoint]]
+** TODO [[https://wiki.haskell.org/wikiupload/1/14/TMR-Issue6.pdf][Getting a Fix from the right fold]]
+** TODO [[https://stackoverflow.com/questions/17307416/difference-between-free-monads-and-fixpoints-of-functors][Difference between Free Monad and Fixed Point of Functor]] as a connection to [[file:free-monad.org::*Description][Free Monads]]
+** DONE [[https://www.youtube.com/watch?v=-98fR9VmLbQ][Bartosz Milewski: Programming with algebras]]
+** DONE [[https://www.youtube.com/watch?v=24UoRaoKLjM][Recursion: Where Functional Programming Hits Bottom]]
+** DONE [[https://github.com/vmchale/morphism-zoo][Morphism Zoo]]
+   CLOSED: [2020-10-07 Mi 11:37]
+There were not many examples sadly.
+** TODO [[https://deniskyashif.com/2019/05/15/on-recursive-functions/][On Recursive Functions]]
+** TODO [[http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=598DCE2004D01B4F2AA2F5202A20665A?doi=10.1.1.37.1418&rep=rep1&type=pdf][A Tutorial on Coalgebras and Coinduction]]
+** TODO [[https://mathoverflow.net/questions/128262/connection-between-codata-and-greatest-fixed-points][Connection between codata and greatest fixpoints]]
+** TODO [[https://themattchan.com/docs/algprog.pdf][The algebra of programming]]
+** TODO [[http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.299.722][Coinductive Pearl: Modular First-Order Logic Completeness]]
+** TODO [[http://www.cs.ox.ac.uk/jeremy.gibbons/publications/adt.pdf][Unfolding Abstract Datatypes]]

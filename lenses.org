@@ -1,0 +1,42 @@
+* Optics
+Seem to be a generalization of Lenses.
+* Lenses
+Lenses can be thought of as a tuple of getter and setter of two types a and b where a is the "large structure" and b is the "small structure" inside of a that we get/set.
+
+\( \texttt{type}~\texttt{Lens}~a~b = (a\rightarrow b, a\rightarrow b\rightarrow a) \)
+
+We can do some rearrangements so that we can write function on lenses (like composition) more easily.
+First, if we factor out the first a we get a "store coalgebra comonad" since (b, b -> a) is a the store comonad and since store is also a functor, a -> Store b a is a coalgebra (a -> f a).
+
+\( \texttt{type}~\texttt{Lens}~a~b = \texttt{Coalg}~(\texttt{Store}~b)~a \)
+\( \texttt{type}~\texttt{Lens}~a~b = a\rightarrow(b, b\rightarrow a) \)
+
+And since the store comonad is isomorphic to the type (forall y, (b -> f b) -> f a) we can rearrange again (proof of isomorphism in the Multiplate paper). We do this since we don't want to rely on store as a dependency and can now implement all the functions on lenses using fmap only.
+
+\( \texttt{type}~\texttt{Lens}~a~b = \texttt{Functor}~f \Rightarrow a\rightarrow ((b \rightarrow f~b) \rightarrow f a) \)
+
+and due to associativity of function arrows we can rearrange again to get a very nice representation using only coalgebras. Which results in lense composition being just function composition.
+
+\( \texttt{type}~\texttt{Lens}~a~b = \texttt{Functor}~f \Rightarrow (b \rightarrow f~b) \rightarrow (a\rightarrow f a) \)
+\( \texttt{type}~\texttt{Lens}~a~b = \texttt{Functor}~f \Rightarrow (\texttt{Coalg}~b) \rightarrow (\texttt{Coalg}~a) \)
+
+
+* Questions
+** DONE is coalg itself also a functor? [[file:playground/coalg-functor.hs::{-#%20LANGUAGE%20TupleSections%20#-}][haskell]]
+No it's not because a is both an input and in the output. the fmap with a function a -> b could only change the f a part, not the a.
+** DONE it seems a bit weird how we can factor out the a to get a tuple, then use the isomorphism to get back to a function representation and then move the a inwards again. 
+If f is always the functor (Store b) then (b -> f b) is trivial to write, it's just return and the right part (a -> f a) is just our original lens again. 
+*** TODO Do we ever use a different functor there?
+* Resources
+** DONE [[https://www.schoolofhaskell.com/user/tel/lenses-from-scratch][Lenses from Scratch]]
+** TODO [[https://bartoszmilewski.com/2013/10/08/lenses-stores-and-yoneda/][Lenses, Stores and Yoneda]]
+already read but read again because I now better understand Yoneda
+** TODO [[https://bartoszmilewski.com/2015/07/13/from-lenses-to-yoneda-embedding/][From Lenses to Yoneda Embedding]]
+** TODO [[file:comonads.org::*Description][Kmett's comonad blog from here]]
+** TODO [[https://r6research.livejournal.com/23705.html][Lenses are exactly the Coalgebras of the Store Comonad]]
+** TODO [[https://www.schoolofhaskell.com/user/tel/pretext-by-experiments-and-guesses][Pretexts by experiment and guesses]]
+explains the isomorphism of Store
+** TODO [[https://arxiv.org/abs/1103.2841v1][Multiplate Paper]]
+** TODO [[https://twanvl.nl/blog/haskell/cps-functional-references][CPS Functional References]] 
+explains about the last coalg representation
+** TODO [[https://stackoverflow.com/questions/58583458/is-there-a-van-laarhoven-representation-of-optional][van Laarhoven representation for Optional]]

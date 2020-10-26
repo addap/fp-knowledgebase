@@ -1,0 +1,6 @@
+* Description
+Miscellaneous Topics of Category Theory
+* Resources
+** TODO [[https://blog.ploeh.dk/2017/10/04/from-design-patterns-to-category-theory/][From Design Patterns To Category Theory]]
+** TODO [[https://arxiv.org/abs/1809.05923][What is Applied Category Theory]]
+** TODO [[http://web.sfc.keio.ac.jp/~hagino/thesis.pdf][Categorical Programming Language]]

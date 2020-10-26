@@ -1,0 +1,5 @@
+* Description
+* Resources
+** TODO [[https://wadler.blogspot.com/2008/02/data-types-la-carte.html][Wadler on Datatypes a la carte]]
+** TODO [[https://dl.acm.org/doi/10.1145/2633628.2633635][Closed Type Families Implementation of Datatypes a la carte]]
+** TODO [[https://www.ps.uni-saarland.de/Publications/documents/ForsterStark_2020_Coq.pdf][Coq a la carte]]

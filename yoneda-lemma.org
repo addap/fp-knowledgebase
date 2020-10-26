@@ -1,0 +1,14 @@
+* Decription
+The Yoneda Lemma says that for each category C and functor F : C -> Set, there is a natural transformation from some canonical representation, H_A(-) : C -> Set, to F.
+H_A(-) is a functor that maps an element X to a set containing all morphisms from A to X in C.
+We create this natural transformation by first taking H_A(A) of our special object A. This set contains at least the identity morphism on A.
+Then we need to find an element in F(A) which is the image of the identity morphism under our natural transformation. We just pick any element in F(A) and call it q. 
+** TODO what happens if F(A) is empty?
+Now we do the general case and derive \( \eta_X \) for any X in C. \( \eta_X \) maps a morphism f, from A to X, to an element of F(X). 
+We just set that element as F(f)(q) since q is an element of F(A) and F(f) maps F(A) to F(X).
+That the natural transformation law holds is easy to show. For any objects X, Y of C we have \( \eta_X f := F(f)(q) \) and \( \eta_Y g := F(g)(q) \) then what happens to a morphism h from X to Y? We know that H_A(h) is just the morphism (function since we're in Set) between H_A(X) and H_A(Y) that composes its argument with h. for some function f : A -> X we have h . f : A -> Y.
+So if we go in one way around the commuting diagram we have \( F(h)(\eta_X f) = F(h)(F(f)(q)) \) 
+and if we go the other way around we have \( \eta_Y (H_A(h)(f)) = \eta_Y (h . f) = F(h . f)(q) = F(h)(F(f)(q)) \) which is equal to the above.
+* Resources
+** DONE [[https://bartoszmilewski.com/2013/05/15/understanding-yoneda/][Bartosz Milewski: Understanding Yoneda]]
+** TODO [[https://www.math3ma.com/blog/the-yoneda-lemma][Math3ma: Yoneda Lemma]]

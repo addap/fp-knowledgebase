@@ -1,7 +1,6 @@
 * Description
 Comonads are the categorical dual to monads. Comonads model [[http://tomasp.net/coeffects/][Coeffects]]. Effects are about what your program does to the environment (Monads) and Coeffects are about how your program takes information from the environment. As such game of life is comonadic since computing the value for a cell requires knowledge about the adjacent cells.
 You can always extract a value from a Comonad (extract) and duplicate the structure (duplicate) which can be used to apply a function to each value in a Comonad that also gets access to all other values inside that Comonad (extend).
-
 * Resources
 ** DONE [[https://www.youtube.com/watch?v=F7F-BzOB670&list=WL&index=25&t=4s][Getting a quick fix on Comonads]], [[file:playground/src/quick-fix-on-comonads.hs::{-#%20LANGUAGE%20ScopedTypeVariables,%20FlexibleContexts,%20UndecidableInstances,%20DataKinds,%20KindSignatures,%20GADTs,%20TypeFamilies,%20MultiParamTypeClasses,%20TypeOperators,%20TypeInType%20#-}][notes]]
 ** DONE [[http://blog.sigfpe.com/2006/12/evaluating-cellular-automata-is.html][Evaluating Cellular Automata is comonadic]]
@@ -16,6 +15,13 @@ You can always extract a value from a Comonad (extract) and duplicate the struct
 ** TODO [[http://conal.net/blog/posts/sequences-streams-and-segments][Streams are Comonads]]
 ** TODO "The Essence of Dataflow Programming"
 ** TODO [[http://www.haskellforall.com/2013/02/you-could-have-invented-comonads.html][Comonads are objects]]
+** TODO [[http://blog.functorial.com/posts/2016-08-07-Comonads-As-Spaces.html][Comonads as Spaces]]
+** TODO [[https://blog.functorial.com/posts/2017-10-28-Comonads-For-Optionality.html][Comonads for Optionality]]
+** TODO [[https://kodimensional.dev/posts/2019-03-25-comonadic-builders][Comonadic Builders]]
+** TODO [[https://kowainik.github.io/posts/2018-09-25-co-log#comonads][Comonadic Logging]]
+** TODO [[http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A2DBC41C026B47623CCDF167972054AB?doi=10.1.1.636.6901&rep=rep1&type=pdf][Coeffect Calculus]]
+** TODO [[https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.406.7736&rep=rep1&type=pdf][Coeffects]]
+** TODO [[file:~/Documents/CS/books/Comonads for UIs.pdf][Comonads for UIs]]
 * Examples
 ** [[file:comonads.hs::import%20Prelude%20hiding%20(iterate)][Tape]]
 ** [[file:playground/src/comonad-store.lhs::>%20import%20Data.Functor.Extend][Store]], [[https://stackoverflow.com/questions/8766246/what-is-the-store-comonad][SO]]

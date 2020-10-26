@@ -1,0 +1,9 @@
+* Description 
+Parametric polymorphism refers to polymorphic functions or data type that can act on all instantiations of a type variable by being abstract enough. Like a function append :: [a] -> [a] -> [a] that can work on all types of lists.
+
+Ad-hoc polymorphism is a type of polymorphism where a polymorphic function can be applied to different types because there separate implementations for each type like wiht function overloading. Haskell's type classes allow ad hoc polymorphism because they allow you to apply a function to a type if there is a fitting instance.
+
+Bounded parametric polymorphism is parametric polymorphism that places additional constraints on the type variable. In Haskell this is done through constraints using type classes. So Haskell's ad-hoc polymorphism can be classified as bounded parametric polymorphism.
+* Resources
+** [[https://en.wikipedia.org/wiki/Parametric_polymorphism][Wikipedia]]
+** TODO [[http://conal.net/blog/posts/memoizing-polymorphic-functions-part-one][Memoizing Polymorphic Functions]]

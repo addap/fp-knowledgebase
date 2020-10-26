@@ -6,8 +6,11 @@ They "free the interpreter" by splitting up program interpretation (semantics) f
 * Resources
 ** DONE [[https://stackoverflow.com/questions/13352205/what-are-free-monads?rq=1][StackOverflow]]
 ** DONE [[http://www.haskellforall.com/2012/06/you-could-have-invented-free-monads.html][HaskellForAll]], [[file:playground/src/free-monad2.lhs::>%20{-#%20LANGUAGE%20StandaloneDeriving,%20UndecidableInstances,%20DeriveFunctor,%20EmptyDataDeriving%20#-}][implementation]]
+*** TODO can I have a type-level list instead of the b in Toy to carry all the types that will be printed?
+I think that's hard because I don't have an explicit recursion in the Toy datatype so how would I append?
+I could also just have a string in the print and apply show in the smart constructor. That would solve the same problem.
 ** DONE Free Monad + Interpeter [[https://softwareengineering.stackexchange.com/questions/242795/what-is-the-free-monad-interpreter-pattern][1]], [[https://stackoverflow.com/questions/23766419/when-would-i-want-to-use-a-free-monad-interpreter-pattern][2]]
-An interesting fact one of the answers talks about is how you can translate your functor into a typeclass, which has one function per constructor of the functor, and back. 
+An interesting fact one of the answers talks about is how you can translate your free monad into a typeclass, which has one function per constructor of the functor, and back. 
 *** DONE what is meant by: Free monads are also a normalized program representation that makes it impossible for the interpreter to distinguish between programs whose do-notation is different but actually "mean the same."
 Probably that the do-blocks all get translated into the data structure consisting of the free monad and the functor and this datastructure is normalized. Since the "meaning" only comes from the interpreter that gets the datasctructure as input this normalization is a natural consequence.
 ** TODO [[http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf][Data Types a la Carte]]
@@ -27,5 +30,12 @@ Yes I was able to have the stack in the interpreter. But was not able to write i
 ** TODO [[http://fumieval.hatenablog.com/entry/20121111/1352624678][GOTOs using Free Monads]] and [[http://fumieval.hatenablog.com/entry/20121111/1352642335][more]] (referenced on HaskellForAll)
 ** TODO [[http://www.haskellforall.com/2012/07/purify-code-using-free-monads.html][Purify Code Using Free Monads]]
 ** DONE [[https://www.youtube.com/watch?v=U0lK0hnbc4U][Why the Free Monad isn't free]]
+Her argument is that free monads are ofter overkill for the type of applications she writes and that teaching people free monads is hard because the tutorials are mostly geared towards category theorists.
+She also talks about the amount of boilerplate you have to write (functors, smart constructors and interpreters) but I feel that can be solved using the coproduct appraoch (aka datatypes a la carte).
 ** DONE [[https://www.youtube.com/watch?v=ycrpJrcWMp4][Free Monads in Scala]] 
 Gives a good example where you have a high-level language that works on accounts and logging in etc which gets translated into a lower-level language that works on a kv-store.
+** TODO [[http://okmij.org/ftp/Computation/free-monad.html][okmij on Free Monads]]
+** TODO [[https://www.youtube.com/watch?v=IhVdU4Xiz2U][Free monad or tagless final]]
+Compares free monad encoding vs tagless final encoding of a DSL. 
+** TODO [[https://elvishjerricco.github.io/2016/04/08/applicative-effects-in-free-monads.html][Applicative Effects in Free Monads]]
+** TODO [[https://github.com/puffnfresh/free-graphs][Free Graphs]]

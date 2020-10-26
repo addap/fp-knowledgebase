@@ -1,0 +1,5 @@
+* Description
+  Substitutions play a crucial role in the operational semantics of the lambda calculus because we naturally need them in the beta reduction rule to substitute for the bound variable.
+  For implementations it's often easier to represent variables using de Bruijn indices, and using parallel substitution that acts on all variables in a term simultaneously (so we don't need to worry about order, i.e. that a later substitution act on the result of an earlier subsitution). In this case subsitutions are total functions from the natural numbers.
+* Resources
+** TODO [[http://blog.discus-lang.org/2011/08/how-i-learned-to-stop-worrying-and-love.html][How I learned to stop worrying and love de Bruijn indices]]

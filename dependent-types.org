@@ -10,3 +10,5 @@ Dependent types make types first-class citizens of a programming language, i.e. 
 *** TODO How does that relate to the "Compile Time Parsing" paper, where you can also only represent well typed expressions? Do you need dependent types just for the variable binding DeBruijn indices?
 ** DONE [[https://github.com/sweirich/dth][Stephanie Weirich]]
 ** TODO [[https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf][Programming and Reasoning with Algebraic Effects andDependent Types]], same todo in algebraic effects
+** TODO [[http://davidchristiansen.dk/tutorials/nbe/#%2528part._.Bidirectional_.Type_.Checking%2529][Checking dependent types with normalization by evaluation]]
+** TODO [[https://dl.acm.org/doi/10.1145/3371071][Dependent Types as Macros]]

@@ -1,0 +1,79 @@
+* Description 
+The lambda cube is a categorization of different type systems. There is one axis for polymorphism (terms depending on types), higher-kinded types (types depending on types) and dependent types (types depending on terms) each. 
+In a pure type system, the typing rules for the Pi function type is the following
+
+\[
+\inference{\Gamma \vdash A:s & \Gamma,x:A\vdash B:k}{\Gamma \vdash \Pi x:A.B:k}{(s,k) \in R} \quad s, k \in \{*,\Box\}
+\]
+
+where \( * \) is the type of the ordinary types (nat, bool, functions, etc) (i.e. a kind) and \( \Box \) is one step above (type of kind). You can allow individual branches of the lambda cube by adding different rules to R. In total R can be \( \{(*,*), (*,\Box), (\Box,*), (\Box,\Box)\} \)
+As a shorthand we can write \(A \rightarrow B \) instead of \(\Pi x:A.B \) if x does not appear in B to make it look more like the normal function type.
+
+** \( (*,*) \) Function Types
+this rule gives us ordinary and higher-order functions.
+
+
+\[
+\inference{\Gamma \vdash (\Pi\_:nat.nat):* & \Gamma\vdash nat:*}{\Gamma \vdash \Pi \_:(\Pi\_:nat.nat).nat:*}
+\]
+
+which can also be written as 
+
+\[
+\inference{\inference{\Gamma \vdash nat:*} {\Gamma \vdash nat \rightarrow nat:*} {} & \Gamma \vdash nat:*}{\Gamma \vdash (nat \rightarrow nat) \rightarrow nat:*}{}
+\]
+
+** \( (\Box,\Box) \) Higher-kinded types/Type families
+this rule allows you to have functions on types. For example for the type constructor "list".
+
+\[
+\inference{\Gamma \vdash *:\Box \quad \Gamma , (\_:*) \vdash *:\Box}{\Gamma \vdash \Pi\_:*.*:\Box}{}
+\]
+
+which can also be written as
+
+\[
+\inference{\Gamma \vdash *:\Box}{\Gamma \vdash (* -> *):\Box}{}
+\]
+
+list : * -> *
+\* -> * : \Box
+
+For the other list operations like cons : a -> [a] -> [a] we would then need polymorphism again (which results in Fomega).
+
+** \( (\Box,*) \) Polymorphism
+This rules allows for terms to depend on types (the result of the Pi abstraction depends on the argument, i.e. here * (terms) depends on \Box (types))
+An example is the polymorphic identity function.
+
+\[
+\inference{\Gamma \vdash *:\Box & \Gamma \vdash (t \rightarrow t) : *}{\Gamma \vdash \Pi t:*. (t \rightarrow t) :*}{}
+\]
+
+I first thought this was already dependent types because the (t -> t) depends on the t but dependent types is actually only about terms. So you need something like x : t where t : * as the argument to the dependent function type Pi.
+
+** \( (*,\Box) \) Dependent Types
+This rule gives you dependent types, so types that depend on terms. 
+Here is a derivation for the standard example where you get an array type with a specified length. (n-vector : n -> vector n, is the constructor for values of type vevtor n. vector : nat -> *, is the type constructor for vectors of length n) without polymorphic t argument for now.
+
+\[
+\inference{\Gamma \vdash nat:* & \Gamma \vdash *: \Box}{\Gamma \vdash nat -> *: \Box}{\text{for vector}}
+\]
+
+\[
+\inference{\Gamma \vdash nat:* & \inference{\Gamma,n:nat \vdash vector : nat \rightarrow * & \Gamma,n:nat \vdash n:nat}{\Gamma,n:nat \vdash vector\; n:\Box}{}}{\Gamma \vdash \Pi n:nat.vector\; n:\Box}{\text{for n-vector}}
+\]
+
+*** DONE But why is vector : nat -> \Box?
+It isn't. That was a mistake. vector is nat -> * since it creates a type out of a value of type nat. nat -> * is then of type \Box.
+
+*** example from stackexchange
+Equality type for naturals (= : nat -> nat -> *)
+
+\[
+\inference{\Gamma \vdash nat:* & \inference{\Gamma,n:nat \vdash nat:* & \Gamma,n:nat,m:nat \vdash * : \Box} {\Gamma,n:nat \vdash (\Pi m:nat.*) : \Box} {} } {(\Pi n:nat.\Pi m:nat.* ):\Box}{}
+\]
+
+* Resources 
+** DONE [[https://cstheory.stackexchange.com/questions/36054/how-do-you-get-the-calculus-of-constructions-from-the-other-points-in-the-lambda/36058#36058][stackexchange]]
+** DONE Henk paper
+** TODO [[https://www.irif.fr/~mellies/mpri/mpri-ens/articles/hofmann-syntax-and-semantics-of-dependent-types.pdf][Syntax and Semantics of Dependent Types]]

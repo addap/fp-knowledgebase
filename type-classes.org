@@ -2,3 +2,4 @@
 Type classes were created as a structured way to express ad-hoc polymorphism
 * Resources
 ** TODO [[https://www.researchgate.net/publication/2710954_How_to_Make_Ad-Hoc_Polymorphism_Less_Ad_Hoc][Paper by Wadler]]
+** TODO [[https://homepages.inf.ed.ac.uk/wadler/topics/type-classes.html][More Papers by Wadler]]

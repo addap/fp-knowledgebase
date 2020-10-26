@@ -1,0 +1,3 @@
+* Description
+* Resources
+** [[http://www.cs.nott.ac.uk/~psztxa/publ/flops04.pdf][Normalization by evaluation for]] \( \lambda^{\rightarrow 2} \)

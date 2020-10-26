@@ -1,0 +1,14 @@
+* Description
+Polymoprhic recursion is recursion where the recursive call uses a different type than the original call.
+For example with the data type definition
+> data Nested a = NestedCons (Nested [a]) | NestedNil
+
+a function operating recursively on Nested a would also be called on Nested [a], Nested [ [a] ] etc. (This automatically calls for higher-ranked types in the language if you want to map/fold over it I think because we need to quantify the type variable)
+
+Polymorphic recursion makes type inference undecidable. Probably because it would need to instantiate infinitely many types for a in the recursive calls. (But StandardML can actually write a length function like [[https://stackoverflow.com/questions/40247339/polymorphic-recursion-syntax-and-uses][here]])
+
+A bit related is [[file:monomorphization.org::*Description][monomorphization]].
+* [[file:playground/src/polymorphic-recursion.lhs::>%20{-#%20LANGUAGE%20RankNTypes%20#-}][Tests here]]
+* Resources
+** DONE [[https://stackoverflow.com/questions/51093198/applications-of-polymorphic-recursion][StackOverflow explanation where you would need PR]]
+** TODO [[https://homepages.dcc.ufmg.br/~camarao/sblp2003.pdf][Type Inference for Polymorphic Recursion]]

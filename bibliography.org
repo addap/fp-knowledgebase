@@ -1,0 +1,9 @@
+* Software Foundations 1
+** IndProp chapter [[https://www.mattjquinn.com/2017/coq-induction-varying-hypothesis-explanation/][article about IH]]
+* Software Foundations 2
+* Software Foundations 3
+* Software Foundations 4
+* Proofs and Types
+** [[https://mathoverflow.net/questions/281387/how-to-handle-sums-in-taits-reducibility-proof-of-strong-normalisation][question about strong normalization]]
+* Intuitionistic Type Theory
+* Introduction to Mathematical Logic

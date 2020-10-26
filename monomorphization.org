@@ -1,0 +1,4 @@
+* Description
+A bit related is monomorphization which is the specialization of a polymorphic function with each instantiated type at compile time, to make monomorphic copies of the function (Haskell/System F passes in the type at call-time to make the function monomorphic). If you do monomorphization then you can't have higher-ranked types since functions of higher rank need a uniform representation of values which you don't have if you specialize them. Also you can't have polymorphic recursion since then you would need to instantiate an infinite number of functions.
+* Resources
+** DONE [[https://old.reddit.com/r/haskell/comments/46lux3/monomorphization_good_or_bad_idea/][Reddit post]]

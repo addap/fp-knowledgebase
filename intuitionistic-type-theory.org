@@ -1,0 +1,4 @@
+
+* Resources
+** [[https://www.csie.ntu.edu.tw/~b94087/ITT.pdf][ITT book]]
+** [[http://www.cse.chalmers.se/research/group/logic/book/book.pdf][Programming in Martin Loef Type Theory]]

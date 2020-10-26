@@ -1,0 +1,5 @@
+* Description
+  The book gives an introduction to many htinkgs in type theory, like the different lambda calculi, subtyping and polymorphism
+* [[https://www.cis.upenn.edu/~bcpierce/tapl/errata.txt][Erratas]]
+* Questions
+** TODO when they indtroduce typing, they say it's a purely syntatic notion. But when we get to dependent types this is not the case anymore right? because things like conversion need to be able to compute at the type level so we need an operational semantics.

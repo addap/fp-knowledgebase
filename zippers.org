@@ -2,4 +2,7 @@
 Zippers are an alternative representation of a data structure where you have a focus element. You can always transform it back. They might always have to be comonads (but then there wouldn't be an equivalent to the empty list?)
 * Resources
 ** TODO [[https://www.st.cs.uni-saarland.de/edu/seminare/2005/advanced-fp/docs/huet-zipper.pdf][Functional Pearl]]
+** TODO [[http://strictlypositive.org/CJ.pdf][More on Zippers from Conal Elliot]]
 ** TODO [[file:playground/src/zipper.lhs::We're%20going%20to%20take%20a%20look%20at%20an%20alternative%20way%20to%20define%20a%20Zipper%20Comonad][Zipper from Github Gist]]
+** TODO [[https://chrispenner.ca/posts/representable-cofree-zippers][Zippers from Representable and Cofree]]
+** TODO [[http://okmij.org/ftp/continuations/zipper.html][Okmij on Zippers]]
