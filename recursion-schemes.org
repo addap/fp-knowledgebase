@@ -36,3 +36,4 @@ There were not many examples sadly.
 ** TODO [[https://themattchan.com/docs/algprog.pdf][The algebra of programming]]
 ** TODO [[http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.299.722][Coinductive Pearl: Modular First-Order Logic Completeness]]
 ** TODO [[http://www.cs.ox.ac.uk/jeremy.gibbons/publications/adt.pdf][Unfolding Abstract Datatypes]]
+** TODO [[http://www.cs.ox.ac.uk/people/nicolas.wu/papers/Hylomorphisms.pdf][The Mother of All Structured Recursion Schemes]]
