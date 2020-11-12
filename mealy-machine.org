@@ -1,0 +1,14 @@
+#+TITLE: Mealy Machine
+* Description
+A Mealy Machine is a structure in computer science describing a state machine. A Mealy machine is a set of states and transition labes where the output depends on the current state and the input at a particular step.
+I think I saw an article once about how they are connected to [[file:comonads.org][Comonads]] but I forgot where, probably Kmett's blog.
+* Resources
+** DONE [[http://www.alfredodinapoli.com/posts/2016-09-10-paginators-are-mealy-machines-in-disguise.html][Paginators are Mealy Machines in Disguise]]
+It's an interesting article about how to model a paginated API using a datatype that turns out to be a Mealy Machine. Technically I have some problems with it though because
+- since part of the output will always be the input to the next state I don't think Mealy is the right abstraction here, Moore should also work and may be more concise.
+- The `Maybe i` should rather be another datatype with 3 variants because he uses it to signal
+  1) start of the paginator with Nothing
+  2) no more tokens with Nothing
+  3) next token with Just
+- If we don't use Maybe then I don't think we need the Leaf case
+*** TODO when I happen upon a paginated API I should try like this
