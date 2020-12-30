@@ -1,4 +1,5 @@
-* Positivity Condition
+#+Title: Positivity Condition
+
 In some programming languages, like Coq, we have a condition that a type may only appear recursively in strictly positive positions when defining it (i.e. after the rightmost function arrow). Because that ensures that a smallest solution to the type equation exists. (e.g. all derivations terminate)
 
 An example of how not having the strict positivity condition would lead to wrong behavior is this.

@@ -36,10 +36,10 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** Traversable, Jaskeliov & Rypacek MSFP 2012
 ** M. P. Jones & Shield, Composing Monads
 * Coq
-** do the proof for Falsity <=> Foo from Alexander
+** DONE do the proof for Falsity <=> Foo from Alexander
 ** is the Stream type from [[file:comonads.hs::data%20Stream%20a%20=%20Cons%20a%20(Stream%20a)][here]] isomorphic to Foo/can we write one that is still equivalent to Falsity in Coq?
 ** [[http://gallium.inria.fr/blog/incremental-cycle-detection/][Proving Asymptotic Bounds with Coq]]
-** [[file:positivity-condition.org::*Positivity%20Condition][Positivity Condition]]
+** [[file:positivity-condition.org][Positivity Condition]]
 * Category Theory
 ** [[file:category-theory.org::*Description][Miscellaneous]]
 ** [[file:monads.org::*Description][Monads/Applciatives/Functors]]
@@ -78,5 +78,6 @@ What does Haskell use and what are the upsides/downsides?
 ** [[file:futamura.org::*Description][Futamura Projections]]
 ** [[file:partial-evaluation.org::*Description][Partial Evaluation]]
 ** [[file:frp.org::*Description][FRP]]
-** [[http://thecorememory.com/Next_700.pdf][The Next 700 Programming Languages]]
 ** [[file:tapl.org::*Description][TAPL]]
+* Papers
+** [[file:next-700-programming-languages.org][The next 700 Programming Languages]]

@@ -1,0 +1,42 @@
+#+TITLE: Next 700 Programming Languages
+
+This paper from 1966 establishes some foundations about the structure of programming languages. The author establishes that any programming language is essentially
+1. a way of expressing things in terms of other things (combination/abstraction)
+2. a set of basic given things (primitives)
+The autohor notes that many existing languages at that time (he often references the still young ALGOL 60) have too many idiosynchracies that are concerned with combination/abstraction while they should rather be focusing on the set of primitives since that primiarily gives a programming language the power to work well in a given problem set.
+Therefore, Landin develops a system of programming languages "ISWIM" (if you see what I mean) which has a standardized set of rules for combination/abstraction in form of an expression language, i.e. it contains
+- let and where syntax
+- conditionals
+- function abstractions
+- application
+- lists
+- definitions
+
+Syntactically one can say that Haskell and OCaml are very much influenced by this as they pretty much contain all these verbatim, sometimes with slightly different physical syntax.
+ISWIM can then be fitted for any given task by adding the appropriate primitives.
+
+* ISWIM Stack
+The author establishes a stack of different ISWIMs that in sequence become more abstract and together describe one language.
+1. physical ISWIM
+   describes the physical representation of an ISWIM program e.g. when it is printed or handwritten or on a computer terminal (not really much in focus nowadays)
+2. logical ISWIM
+   describes the konkrete syntax of ISWIM. i.e. how different epxressions can be arranged
+3. abstract ISWIM
+   describes the abstract syntax of ISWIM, i.e. an AST
+4. applicative expressions
+   describes a virtual machine that interpretes ISWIM and gives it meaning, i.e. the semantics of ISWIM. It is described in another paper and I'm not sure if it's more of a small/big step evaluator or some kind of deontological semantics.
+
+2-4 are still very much in use today and are in fact the standard way we are taught about programming languages in university so Landin was spot on in 1966.
+
+* Equivalence Relations
+Landin then also talks about the different equivalence relations that exist in ISWIM programs e.g.
+- L = L' -> L M = L' M
+- if true then M else N = M
+- L where x = M = L[M/x] (beta reduction)
+
+and so on, which is all stuff that today falls under "term rewriting". These equivalence relations allows one to give a normal form to any ISWIM expression in which e.g. "where" clauses are moved outwards and then reduced with beta reduction. I don't know if he proves it but at least he postulaes that ISWIM has the Church Rosser property so that only one such normal form exists.
+He says one thing that is related to my current work in Autosubst "[there is no equivalence] in the right-hand-side of a function definition", i.e. there is no rewriting (in general) under a binder.
+Also, he makes a godd point about the usefulness of functional programming because he remarks that these equivalence relations only hold in the functional subset of ISWIM without assignment and "program position" (some short circuit syntax for where clauses). And that people should strive to move more in that direction in order to use these equivalences to simplify programs.
+
+* Terminology
+Afterwards he also has a short section where he argues about the usages of the words impoerative & declarative and wants to establish denotative instead of declarative but that word never took off I guess since I never heard it.
