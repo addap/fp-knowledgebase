@@ -3,13 +3,102 @@ Continuations are a way of expressing how a computation continues, like a functi
 Delimited Continuations are a more general form of continuation that only captures a continuation up to a certain limit.
 
 Continuation Passing Style is a compilation technique where each function f(a) = do-something-with-a gets transformed to have an extra continuation argument c which will be called instead of returning from the function. call/cc is a way of getting your hands on a continuation. It's a special case of this CPS transform because call/cc(f) will be transformed to call/cc(f, c) = f(c, c) so it does not call c, but rather f and gives the continuation as the first arg so that f can use it.
+* Example implementing generators
+#+begin_src scheme
+(define (generate-one-element-at-a-time lst)
+  ;; Both internal functions are closures over lst
 
+  ;; Internal variable/Function which passes the current element in a list
+  ;; to its return argument (which is a continuation), or passes an end-of-list marker
+  ;; if no more elements are left. On each step the function name is
+  ;; rebound to a continuation which points back into the function body,
+  ;; while return is rebound to whatever continuation the caller specifies.
+  (define (control-state return)
+    (for-each
+     (lambda (element)
+               (set! return (call-with-current-continuation
+                              (lambda (resume-here)
+                                ;; Grab the current continuation
+                               (set! control-state resume-here)
+                               (return element))))) ;; (return element) evaluates to next return
+     lst)
+    (return 'you-fell-off-the-end))
+
+  ;; (-> X u 'you-fell-off-the-end)
+  ;; This is the actual generator, producing one item from a-list at a time.
+  (define (generator)
+    (call-with-current-continuation control-state))
+
+  ;; Return the generator
+  generator)
+
+(define generate-digit
+  (generate-one-element-at-a-time '(0 1 2)))
+
+(generate-digit) ;; 0
+(generate-digit) ;; 1
+(generate-digit) ;; 2
+(generate-digit) ;; you-fell-off-the-end
+#+end_src
 * Resources
 ** TODO [[https://dl.acm.org/doi/10.1145/3236764][Handling Delimited Continuations with Dependent Types]]
-** TODO [[https://jlongster.com/Whats-in-a-Continuation][What's in a Continuation?]]
+** DONE [[https://archive.jlongster.com/Whats-in-a-Continuation][What's in a Continuation?]]
+My solution to the challenge how to return the value directly from send: I used another continuation in the send() and when foo returned into run I invoke it from there to jump back to the send and then return to toplevel.
+#+begin_src javascript
+
+function currentContinuation() {
+  return callCC(cont => ({ __cont: cont }));
+}
+
+function pause() {
+  var value = currentContinuation();
+
+  if(value.__cont) {
+    throw value;
+  }
+  else {
+    return value;
+  }
+}
+
+function run(func) {
+  var c2 = { __cont: x => x };
+
+  try {
+    return c2.__cont(func());
+  }
+  catch(e) {
+    if(!e.__cont) {
+      throw e;
+    }
+
+    var exc = e;
+    return {
+      send: function(value) {
+        c2 = currentContinuation();
+        if (c2.__cont) {
+          exc.__cont(value);
+        } else {
+          return c2;
+        }
+      }
+    };
+  }
+}
+
+function foo() {
+  var x = pause();
+  return x * 2;
+}
+
+var process = run(foo);
+console.log(process.send(10));
+#+end_src
 ** TODO [[http://www.haskellforall.com/2014/04/how-continuation-monad-works.html][How the continuation Monad works]]
 ** TODO [[https://en.m.wikibooks.org/wiki/Haskell/Continuation_passing_style][Continuation Passing Style]]
 ** DONE [[https://www.ps.uni-saarland.de/~duchier/python/continuations.html][Continuations Made Simple]]
 The validator is I think implemented the same way in SICP
 ** TODO [[file:~/Documents/Compsci/papers/First-class%20continuations%20in%20ML.pdf][First-class continuations in ML]]
 ** TODO [[https://era.ed.ac.uk/bitstream/handle/1842/393/ECS-LFCS-97-376.pdf][Categorical Structure of CPS]]
+** TODO [[http://community.schemewiki.org/?call-with-current-continuation][A short introduction to call/cc]]
+** TODO [[https://wiki.c2.com/?CallWithCurrentContinuation][C2 Wiki]]

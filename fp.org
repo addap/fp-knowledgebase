@@ -79,5 +79,6 @@ What does Haskell use and what are the upsides/downsides?
 ** [[file:partial-evaluation.org::*Description][Partial Evaluation]]
 ** [[file:frp.org::*Description][FRP]]
 ** [[file:tapl.org::*Description][TAPL]]
+** [[file:curry-howard.org][Curry Howard]]
 * Papers
 ** [[file:next-700-programming-languages.org][The next 700 Programming Languages]]

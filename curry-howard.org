@@ -1,0 +1,4 @@
+#+TITLE: Curry Howard
+
+* Resources
+** TODO [[https://disi.unitn.it/~bernardi/RSISE11/Papers/curry-howard.pdf][Lectures on the Curry Howard Isomorphism]]

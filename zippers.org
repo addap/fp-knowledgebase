@@ -46,3 +46,4 @@ The paper presents an interesting datastructure in a well understandable way. Th
 ** TODO [[file:playground/src/zipper.lhs::We're%20going%20to%20take%20a%20look%20at%20an%20alternative%20way%20to%20define%20a%20Zipper%20Comonad][Zipper from Github Gist]]
 ** TODO [[https://chrispenner.ca/posts/representable-cofree-zippers][Zippers from Representable and Cofree]]
 ** TODO [[http://okmij.org/ftp/continuations/zipper.html][Okmij on Zippers]]
+** TODO [[https://stackoverflow.com/questions/9190352/abusing-the-algebra-of-algebraic-data-types-why-does-this-work?rq=1][StackOverflow with a lot of extra information and connections to Category Theory]]
