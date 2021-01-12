@@ -1,0 +1,7 @@
+#+TITLE: Negative and Fractional Types
+
+It seems that it's a way to interpret types as members of a field so we also get negative and fractional types. Negative types are tied to [[file:continuation.org][continuations]] since they expect something and fractionals I don't know.
+
+* Resources
+** TODO [[https://legacy.cs.indiana.edu/~sabry/papers/rational.pdf][Paper]]
+** TODO [[http://lambda-the-ultimate.org/node/4964][Paper comments at lambda the ultimate]]

@@ -8,6 +8,28 @@ From what I understand, each f-algebra gives an interpretation of your datatype.
 With f-algebras you encapsulate only the most general ideas of how you would want to interpret your datatype, without doing recursion, and can write recursive function like a catamorphism to apply them to an expression of your datatype. Then you can also write other functions similar to a catamorphism that might apply two algebras at once, side by side, or might first apply one algebra and then another etc.
 ** Duality
 Of course there's also a dual for this, coalgebras, corecursion and codata but I have no idea yet how they behave.
+** Lazyness
+In a [[https://www.youtube.com/watch?v=PK4SOaAGVfg][Youtube video]] about F-Algebras inspired by Milewski's blog post the speaker explains how one can model an interpeter for a programming language where some parts should be lazy (like lambda bodies, if branches etc.).
+For that we have to notice that the type variable of an algebra `f a -> a` is the type of the already evaluated children of an expression to which we apply the algebra. But if certain parts should be evaluated lazily they should not be holes of this type. Therefore, we can simply add another type variable to our functors.
+#+begin_src haskell
+newtype LazyFix f = Fx' (f (LazyFix f) (LazyFix f))
+
+data Iffy a b
+    = Boolean Bool
+    | And b b
+    | If b a a
+    deriving (Functor, Show)
+
+alg :: Algebra (Iffy (LazyFix Iffy)) Bool
+alg (Boolean b) = b
+alg (And x y)   = x && y
+alg (If p x y)  = eval $ if p then x else y
+
+eval :: LazyFix Iffy -> Bool
+eval = lazyCata alg
+#+end_src
+So here our expressions have two kinds of holes, lazy ones and struct ones. The strict ones are already evaluated when we call the algebra so they have type Bool, the lazy ones are not evaluated so they are the fixpoint of the expression.
+This works but I find it a bit unsatisfying because the nice thing about an f-algebra is that we can just take care of one level of recursion and the catamorphism takes care of the actual recursion but here the algebra also knows of the fixpoint.
 * [[file:playground/src/recursion-schemes.hs::module%20RecursionSchemes%20where][Haskell]]
 * Resources
 ** TODO [[https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.41.125&rep=rep1&type=pdf][Bananas, Lenses, Envelopes and Barbed Wire]]

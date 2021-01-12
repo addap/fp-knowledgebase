@@ -100,5 +100,15 @@ console.log(process.send(10));
 The validator is I think implemented the same way in SICP
 ** TODO [[file:~/Documents/Compsci/papers/First-class%20continuations%20in%20ML.pdf][First-class continuations in ML]]
 ** TODO [[https://era.ed.ac.uk/bitstream/handle/1842/393/ECS-LFCS-97-376.pdf][Categorical Structure of CPS]]
-** TODO [[http://community.schemewiki.org/?call-with-current-continuation][A short introduction to call/cc]]
-** TODO [[https://wiki.c2.com/?CallWithCurrentContinuation][C2 Wiki]]
+** DONE [[http://community.schemewiki.org/?call-with-current-continuation][A short introduction to call/cc]]
+A really nice and simple explanation of continuations. How to use escape continuations & implement coroutines.
+** TODO [[https://wiki.c2.com/?CallWithCurrentContinuation][C2 Wiki Call/CC]]
+** TODO [[https://wiki.c2.com/?CpsTransformation][C2 Wiki CPS Transformation]]
+** DONE [[https://wiki.c2.com/?ContinuationExplanation][C2 Wiki Continuation]]
+It can be said that a continuation is goto with a parameter that is the value of the computation that transferred the control. It is unlike a function call because, while it is possible to return to the original computation it is not necessarily expected.
+** DONE [[https://wiki.c2.com/?ContinuationPassingStyle][C2 Wiki CPS]]
+CPS is a programming style where no function is ever allowed to return. A function "A" must emulate returning by passing its would-be-return value to a continuation function that was passed into "A" as an explicit parameter. Thus, all function calls are tail calls, which means, all function calls are instances of "goto with parameters."
+
+If a function "A" wants to call another function "B", "A" has to pass "B" a continuation "rest of A" that will receive the return value of "B" and then perform the rest of A's operations. If a function "A" wants to tail-call "B", it can simply pass "B" the same continuation that "A" itself received.
+CPS is useful from a theoretical standpoint because it gives you all the power of CallWithCurrentContinuation, while making a CallWithCurrentContinuation function unnecessary. All functions are called with their continuations. In fact, it is possible to write an automatic translator that converts functions from ordinary style into this style.
+** TODO [[http://www.nhplace.com/kent/PFAQ/unwind-protect-vs-continuations-overview.html][Kent Pitman's criticism of scheme's implementation]]

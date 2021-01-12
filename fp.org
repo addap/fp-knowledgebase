@@ -36,7 +36,6 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** Traversable, Jaskeliov & Rypacek MSFP 2012
 ** M. P. Jones & Shield, Composing Monads
 * Coq
-** DONE do the proof for Falsity <=> Foo from Alexander
 ** is the Stream type from [[file:comonads.hs::data%20Stream%20a%20=%20Cons%20a%20(Stream%20a)][here]] isomorphic to Foo/can we write one that is still equivalent to Falsity in Coq?
 ** [[http://gallium.inria.fr/blog/incremental-cycle-detection/][Proving Asymptotic Bounds with Coq]]
 ** [[file:positivity-condition.org][Positivity Condition]]
@@ -48,16 +47,14 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** [[file:lawveres-theorem.org::*Description][Lawvere's Theorem]]
 * Type Theory
 ** [[file:polymorphism.org::*Description][Parametric/Ad-hoc polymorphism]]
-** Predicativity/Impredicativity
-Predicativity is when a type variable in a type can not be instantiated with the type itself. e.g. in T = forall X. X -> X, X can not be T.
-Impredicativity is when it is possible.
-What does Haskell use and what are the upsides/downsides?
+** [[file:predicativity.org][Predicativity/Impredicativity]]
 ** Parametricity
 ** [[file:lambda-cube.org::*Description][Lambda Cube]]
 ** [[file:polymorphic-recursion.org::*Description][Polymorphic Recursion]]
 ** [[file:monomorphization.org::*Description][Monomorphization]]
 ** [[file:tagless-final.org::*Description][Tagless Final Style]]
 ** [[file:linear-types.org::*Description][Linear Types]]
+** [[file:system-f.org][System F]]
 ** [[file:type-checking.org::*Description][Type Checking]]
 ** [[file:phantom-types.org::*Description][Calculus of Constructions]]
 ** [[file:normalization.org::*Description][Normalization]]
@@ -70,7 +67,8 @@ What does Haskell use and what are the upsides/downsides?
 ** row types
 ** [[file:indexed-types.org::*Description][indexed types]]
 ** [[file:inductive-type.org::*Inductive%20Types][Inductive and Coinductive types]]
-** [[https://legacy.cs.indiana.edu/~sabry/papers/rational.pdf][Negative and Fractional Types]]
+** [[file:derivative-of-types.org][Derivative of Types]]
+** [[file:negative-fractional-types.org][Negative and Fractional Types]]
 ** [[file:denotational-semantics.org::*Description][Domain Theory]]
 ** [[https://github.com/andrejbauer/homotopy-type-theory-course][Homotopy Type Theory]]
 ** [[file:intuitionistic-type-theory.org][Intuitionistic Type Theory]]
@@ -82,3 +80,4 @@ What does Haskell use and what are the upsides/downsides?
 ** [[file:curry-howard.org][Curry Howard]]
 * Papers
 ** [[file:next-700-programming-languages.org][The next 700 Programming Languages]]
+** [[file:theorems-for-free.org][Theorems for Free]]

@@ -1,0 +1,7 @@
+#+TITLE: Theorems For Free
+
+* Further Reading
+** TODO [[https://hal.inria.fr/inria-00076261/document][J.C. Reynolds, Polymorphism is not set theoretic]]
+should explain why naively taking functions and sets as a model for polymorphic lambda calculus does not work. (and hopefully gives a definition of what odel is supposed to mean here)
+** TODO [[http://homepages.inf.ed.ac.uk/wadler/papers/pattern/pattern.pdf][Barret, Wadler, Derivation of a pattern-matching compiler]]
+** TODO [[https://www.cs.bham.ac.uk/~udr/papers/logical-relations-and-parametricity.pdf][Logical Relations and Parametricity: A Reynolds Programme for Category Theory and Programming Languages]]

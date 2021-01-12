@@ -1,0 +1,5 @@
+#+TITLE: Predicativity
+
+Predicativity is when a type variable in a type can not be instantiated with the type itself. e.g. in T = forall X. X -> X, X can not be T.
+Impredicativity is when it is possible.
+* TODO What does Haskell use and what are the upsides/downsides?

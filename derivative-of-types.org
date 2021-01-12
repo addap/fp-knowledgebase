@@ -1,0 +1,57 @@
+#+TITLE: Derivative Of Types
+
+* Summary
+The paper "The Derivative of a Regular Type is its Type of One-Hole Contexts" explores how one could derfine a partial derivative operation on regular types, where regular types are afaik a subset of algebraic datatypes without function types, so just empty, unit, sum and product.
+This derivative operation then results in the type of a one-hole context for the original type.
+This is related to [[file:zippers.org][zippers]] since a zipper is just a pair of a one-hole context and the subterm that was removed.
+** One-Hole Contexts
+A One-Hole context for an x in a type T is a type T' of things t where we have removed one subterm of type x in t. E.g. for a list, the One-Hole context for x being the type of items in the list would be two lists, one for the prefix and one for the suffix.
+Conor McBride noticed that taking these partial derivatives resembled the normal derivative rules we learn for polynomials so he wrote the paper about it.
+** Example
+Binary trees can be written like this as a regular datatype.
+\[ btree = \mu x. 1 + x \times x \]
+and the context for a binary tree is a binary tree with a hole at some node. So we need to record a list of binary decisions which path to take to the hole, together with the other child of the current node.
+\[ btree' = list (2 \times btree)\]
+
+* Exercises
+** TODO Implement in MetaCoq
+It would be interesting to see if we can write a derivation function for the PCUIC terms in MetaCoq.
+Although to do that I would first have to understand his "definition" syntax better, or just use environments.
+*** TODO what does he mean by binding-time in the "definition syntax" F | x = S?
+
+* Resources
+** DONE [[http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.176.2720&rep=rep1&type=pdf][Paper]]
+** DONE [[https://www.youtube.com/watch?v=K7tQsKxC2I8][review of the paper on YT]]
+the speaker reviews the paper adequately I think but too many jokes. Also when he talks about the partial derivative of a recursive type there is a typo which was adressed as a question but then he explained it away wronly I think. The problem is that he takes a derivative over x but then also calls the variable bound by the mu x.
+*** Second Derivative ([[https://www.meetup.com/papers-we-love/events/182798272/][a comment on the meetup website]])
+I didn't ask this until the bar afterward, but we looked at taking the second derivative of a type. We only did it for List, so maybe it makes less sense in something like a tree, but at least for List, it makes a lot of sense:
+
+Coming from the calculus side, recall that
+
+d/dx List = List * List
+
+So then
+
+d^2/dx^2 List = d/dx (List^2) = 2 * List * d/dx List
+
+(by the chain rule, if you don't remember your childhood calculus), and then by substitution
+
+= 2 * List * (List * List) = 2 * List^3
+
+From the context side, recall that the one-hole context of List is two Lists, one for the prefix and one for the suffix. To get the one-hole context in these two lists, you need something like Bool to say in which list (prefix or suffix) you found the second hole, plus the prefix and suffix---the context within that list of the second hole---plus the other list in its entirety:
+
+2 * (List * List) * List = 2 * List^3
+
+Notably, this gives you a two-hole context, but gives ordering on the holes.
+
+* Further Reading
+- In a review of the paper in tht the end they talk about the connection to [[file:negative-fractional-types.org][negative and fractional types]]
+- Also in the paper Conor McBride talks about the curious formula that list can be represented as the geometric series
+  \[ 1 + x + x^2 + x^3 + \dots \]
+  which, if |x| < 1 is equivalent to the following
+  \[ \frac{1}{1-x} \]
+  and if we take the derivative of that
+  \[ \partial_x \frac{1}{1-x} = (\frac{1}{1-x})^2 \]
+  which is the same as when we take the derivative of list in the first place
+  \[ \partial_x list ~ x = (list ~ x)^2 \] which represents the one-hole context of a list as the prefix and the suffix.
+  Supposedly, this is addressed in the book with the weird name [[https://www2.math.upenn.edu/~wilf/gfologyLinked2.pdf][generatingfunctionology]]. Which is about applying analysis to discrete mathematics.
