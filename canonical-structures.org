@@ -1,0 +1,6 @@
+#+TITLE: Canonical Structures
+Canonical Structures (should really be named Canonical Instances) allows you to insert a new rule into the unification algorithm of Coq (i.e. when it checks if two types can be unified T ~ T') by specifying an instance of a record as the "canonical" choice when the unification algorithm is presented with a problem of the form "x ~ proj_i ?T".
+So it can help fill the hole of this ?T because Coq alone cannot come up with some record instance satsifying it.
+* Resources
+** DONE [[https://hal.inria.fr/hal-00816703v2/document][Canonical Structures for the working Coq user]]
+The paper is suprisingly well readable and explains the concept very well. Their example is mostly about unifying some type with one that is inside a record but they also give an interesting generalization to unifying terms by lifting terms on the level of types with phantom types.

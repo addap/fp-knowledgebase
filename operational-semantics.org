@@ -1,0 +1,8 @@
+#+TITLE: Operational Semantics
+
+* TODO Description
+* TODO clear up connection to denotational semantics
+
+* Resources
+** [[https://xavierleroy.org/publi/coindsem-journal.pdf][Coinductive big-step operational semantics]]
+I came upon this while reading the [[https://akihisayamada.github.io/tpp2019/tpp2019-mizuno.pdf][slides by Sumii & Mizuno]] about proving a correspondence between call-by-name and call-by-value lambda calculus.

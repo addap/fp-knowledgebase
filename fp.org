@@ -39,6 +39,7 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** is the Stream type from [[file:comonads.hs::data%20Stream%20a%20=%20Cons%20a%20(Stream%20a)][here]] isomorphic to Foo/can we write one that is still equivalent to Falsity in Coq?
 ** [[http://gallium.inria.fr/blog/incremental-cycle-detection/][Proving Asymptotic Bounds with Coq]]
 ** [[file:positivity-condition.org][Positivity Condition]]
+** Canonical Structures
 * Category Theory
 ** [[file:category-theory.org::*Description][Miscellaneous]]
 ** [[file:monads.org::*Description][Monads/Applciatives/Functors]]
@@ -78,6 +79,7 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** [[file:frp.org::*Description][FRP]]
 ** [[file:tapl.org::*Description][TAPL]]
 ** [[file:curry-howard.org][Curry Howard]]
+** [[file:logical-relations.org][Logial Relations]]
 * Papers
 ** [[file:next-700-programming-languages.org][The next 700 Programming Languages]]
 ** [[file:theorems-for-free.org][Theorems for Free]]

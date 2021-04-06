@@ -1,7 +1,16 @@
 #+TITLE: Theorems For Free
 
-* Further Reading
+Derivation of theorems from the type of parametrically polymorphic functions.
+Intuitively these theorems hold because the functions are parametrically polymorphic i.e. they have
+no information at all about the type of the argument so they can only do a limited number of things.
+Simplest example is the identity function for which there is exactly one implementation.
+There was a way of automatically deriving these but it's been three months since I read it and I
+forgot it again :(
+* Resources Reading
+** DONE the paper
 ** TODO [[https://hal.inria.fr/inria-00076261/document][J.C. Reynolds, Polymorphism is not set theoretic]]
 should explain why naively taking functions and sets as a model for polymorphic lambda calculus does not work. (and hopefully gives a definition of what odel is supposed to mean here)
 ** TODO [[http://homepages.inf.ed.ac.uk/wadler/papers/pattern/pattern.pdf][Barret, Wadler, Derivation of a pattern-matching compiler]]
 ** TODO [[https://www.cs.bham.ac.uk/~udr/papers/logical-relations-and-parametricity.pdf][Logical Relations and Parametricity: A Reynolds Programme for Category Theory and Programming Languages]]
+** TODO [[https://reasonablypolymorphic.com/blog/theorems-for-free/][Review of Theorems for Free!]]
+** TODO [[https://bartoszmilewski.com/2014/09/22/parametricity-money-for-nothing-and-theorems-for-free/][Blog by Bartosz Milewski]]
