@@ -6,7 +6,32 @@ You can always extract a value from a Comonad (extract) and duplicate the struct
 ** DONE [[http://blog.sigfpe.com/2006/12/evaluating-cellular-automata-is.html][Evaluating Cellular Automata is comonadic]]
 ** DONE [[https://www.quora.com/What-is-a-Comonad-and-when-should-I-use-them?share=1][Milewski on Quora]]
 ** DONE [[https://stackoverflow.com/questions/8428554/what-is-the-comonad-typeclass-in-haskell][SO]]
-** TODO [[file:~/Documents/Compsci/papers/codo-notation-orchard-ifl12.pdf][Codo-notation]]
+** DONE [[file:~/Documents/Compsci/papers/codo-notation-orchard-ifl12.pdf][Codo-notation]]
+The paper discusses a possible notations for comonads that is very similar to the existing do notation.
+#+begin_src haskell
+contours :: CArray (Int, Int) Float -> Float
+contours = codo x => y <- gauss2D x
+                     z <- gauss2D y
+                     w <- (extract y) - (extract x)
+                     laplace2D w
+
+gauss2D :: CArray (Int, Int) Float -> Float
+#+end_src
+But the types are basically interchanged. gauss2D takes a comonadic value x of type (w Float) and would return a float but the notation desugars it into something like (fun y -> ...) o (extend gauss2D x) where extend applies the local computation gauss2D globally to x.
+So y is also a comonadic value that is "synchronized" with x (as are all variables in one codo block), meaning that they have the same cursor and shape.
+There is one major drawback in usability namely argument binding. In a do block, free variables are handled by Haskells scoping mechanism
+but in a codo block this is not possible anymore since a codo block describes a function with structured input, all the inputs need
+to have the same structure (be synchronized). A naive translation would lead to unsynchronized arguments like here
+#+begin_src haskell
+contour_bad x = let y = extend gauss2D
+                    z = extend gauss2D
+                    w = extend (minus y) z
+                in laplace2D w
+#+end_src
+where extending the (minus y) operation over z would subtract the value of z at every context from the value of y at a single context.
+Therefore the authors build in an implicit environment in ther translation where every line builds up a tuple of all previous bound
+variables which are then also destructed again in the next line to bind all relevant variables.
+Since a tuple is a comonad the packing and unpacking keeps all variables synchronized.
 ** TODO [[https://www.schoolofhaskell.com/user/edwardk/cellular-automata/part-1][Edward Kmett Comonads Blog]]
 ** DONE [[http://comonad.com/haskell/Comonads_1.pdf][Edward Kmett Comonads Presentation]]
 ** DONE Loeb's Theorem on sigfpe
