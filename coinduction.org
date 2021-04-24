@@ -1,0 +1,4 @@
+* Resources
+** The tapl chapter on it
+** Our mechanization of some of the exercises in tapl
+** [[http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.37.3914&rep=rep1&type=pdf][A Tutorial on Co-induction and Functional Programming (Gordon)]]
