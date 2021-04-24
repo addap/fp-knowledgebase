@@ -1,5 +1,9 @@
 * Description
 Partial Evaluation is applying a function to some known arguments and turning it into a new function thereby optimizing it. Not to be confused with Partial Application like in curried languages like Haskell. Partial Evaluation is an optimization strategy
+Closely related to [[file:futamura.org][Futamura Projections]].
 * Resources
-** [[file:~/uni/bachelor/][My Bachelor stuff]]
-** TODO Blogs on sigfpe [[http://blog.sigfpe.com/2006/04/s4-and-partial-evaluation.html][1]], [[http://blog.sigfpe.com/2006/03/general-theory-of-self-reproducing.html][2]] 
+** CANCELLED [[file:~/uni/bachelor/][My Bachelor stuff]]
+** TODO Blogs on sigfpe [[http://blog.sigfpe.com/2006/04/s4-and-partial-evaluation.html][1]], [[http://blog.sigfpe.com/2006/03/general-theory-of-self-reproducing.html][2]]
+** TODO [[https://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-a4.pdf][Partial Evaluation book]]
+** TODO [[https://static.aminer.org/pdf/PDF/001/006/665/partial_evaluation_of_computation_process_an_approach_to_a_compiler.pdf][Partial Evaluation of Computation Process—An Approach to a Compiler-Compiler]]
+** TODO [[https://www.itu.dk/people/sestoft/pebook/jonesgomardsestoft-letter.pdf][Partial Evaluation and Program Generation]]

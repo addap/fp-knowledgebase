@@ -15,5 +15,6 @@ As such a monad "hides" the value and only provides access to it using a continu
 ** TODO [[http://www.cs.umd.edu/~aseem/dm4free.pdf][Dijkstra Monads for free]]
 ** TODO [[http://blog.sigfpe.com/2008/12/mother-of-all-monads.html][Mother of all Monads]]
 ** TODO [[http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/28/slides/Comonad.pdf][Monads from Comonads, Comonads from Monads]]
+** TODO [[https://github.com/dorchard/effect-monad][Effect Monads]]
 * Questions
 ** TODO What's a representable functor?

@@ -7,4 +7,5 @@ They are sometimes used in normalization proofs.
 * Resources
 ** TODO chapter 12.2 in TAPL gives a whole lot of papers on it
 ** TODO One of the papers of Eirjou Sumii had an overview on the differences between logical relations and bisimulations
-** TODO On of the rsources in [[file:theorems-for-free.org][theorems for free]] also deals with logical relations
+** TODO One of the resources in [[file:theorems-for-free.org][theorems for free]] also deals with logical relations
+** TODO [[https://surface.syr.edu/cgi/viewcontent.cgi?article=1002&context=lcsmith_other][Kripke Logical Relations and PCF]]
