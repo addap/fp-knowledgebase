@@ -1,5 +1,12 @@
 #+TITLE: System F
 
+Also called polymorphic lambda calculus or second-order lambda calculus.
+
+#+begin_src
+S, T := X | S -> T | forall X, T
+s, t := x | lambda x : T, t | s t | lambda T, t | t [T]
+#+end_src
+
 * Resources
 ** [[https://core.ac.uk/download/pdf/82126362.pdf][The Semantics of Second Order Polymorphic Lambda Calculus]]
 Referenced in the [[file:theorems-for-free.org][theorems for free]] paper. I did not quite understand the semantics of types and values given in the paper so I hope this paper can clear that up.

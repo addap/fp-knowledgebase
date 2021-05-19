@@ -1,5 +1,9 @@
-* Description
+#+TITLE: Church encoding
+
 Church encoding is a way of encoding datasctructures purely using the lamda calculus.
+Essentially the idea is to represent a value as the type's eliminator applied to that value.
+E.g. two is represented as (f (f n)) where f is the step-function and n the value for zero.
+
 * Examples
 tru = \t. \f. t
 fls = \t. \f. f
@@ -12,3 +16,5 @@ two = \f. \n. f f n
 as church encoding of the integers
 * Resources
 ** TODO [[http://www.haskellforall.com/2016/04/data-is-code.html?showComment=1467898064772#c3710112311512301556][Haskellforall church encoding compiler]]
+** DONE church encoding in System F from TAPL
+In chapter 23 of TAPL we revisit the Church encoding of types. System F is the first lambda calculus where these encoding can be typed again (because of the type arguments).
