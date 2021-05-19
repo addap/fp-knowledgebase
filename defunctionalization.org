@@ -1,0 +1,25 @@
+#+TITLE: Defunctionalization
+* Description
+Defunctionalization is the process fo turning functions into datastructures as an alternative to higher order functions in settings were you can not necessarily pass a function to another function.
+The inverse is refunctionalization.
+An easy example is filtering a list where in you program you might have multiple function calls you reify the higher order function passed to filter as a datatype where you capture al the free variables. When you then actually want to use filter you transform the datatype back into a function.
+#+begin_src haskell
+filter isEven [0,1,2,3,4]
+filter (< 3) [0,1,2,3,4]
+
+data Filter = IsEven | IsLessThan Int
+filter (refun IsEven) [0,1,2,3,4]
+filter (refun (IsLessThan 3)) [0,1,2,3,4]
+
+refun :: Filter -> Int -> Bool
+#+end_src
+
+In a way you are creating a DSL that describes the kinds of functions you might pass to filter and then interpreting that DSL.
+Incidentally in a language like lisp this seems completely unnecessary since code can be reified to data on the fly.
+** CPS conversion and Recursive <-> Iterative
+This approach can also be used to turn a recursive function into an iterative one by first doing CPS conversion of the function.
+The continuation is then a higher-order function that we can defunctionalize. You have one case in your datatype for every way you invoke the continuation. Then all recursive calls will be in tail-position so we can eliminate then by doing a `while true` and updating the arguments instead.
+At least in the example by James Koppel the defuncitonalized continuation was then a stack that forms the agenda of what is still left to do.
+* Resources
+** DONE [[https://www.youtube.com/watch?v=vNwukfhsOME][Talk]] and [[http://www.pathsensitive.com/2019/07/the-best-refactoring-youve-never-heard.html][Transcript]] by James Koppel
+** TODO [[https://www.joachim-breitner.de/blog/778-Don%E2%80%99t_think%2C_just_defunctionalize][Don't think, just defunctionalize]] by Joachim Breitner

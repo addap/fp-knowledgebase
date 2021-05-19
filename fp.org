@@ -56,6 +56,7 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** [[file:tagless-final.org::*Description][Tagless Final Style]]
 ** [[file:linear-types.org::*Description][Linear Types]]
 ** [[file:system-f.org][System F]]
+** [[file:existential-univeral-types.org][Existential & Universal Type]]
 ** [[file:type-checking.org::*Description][Type Checking]]
 ** [[file:phantom-types.org::*Description][Calculus of Constructions]]
 ** [[file:normalization.org::*Description][Normalization]]
@@ -64,7 +65,7 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** [[file:continuation.org::*Description][(Delimited) Continuations]]
 ** [[https://www.cs.bham.ac.uk/~pbl/mgs2014lam.html][Typed Lambda Calculus]]
 ** Black von Kenichi Asai
-** Church Encoding
+** [[file:church-encoding.org][Church Encoding]]
 ** row types
 ** [[file:indexed-types.org::*Description][indexed types]]
 ** [[file:inductive-type.org::*Inductive%20Types][Inductive and Coinductive types]]
@@ -80,6 +81,8 @@ Are multi parameter typeclasses with functional dependencies equivalent to type 
 ** [[file:tapl.org::*Description][TAPL]]
 ** [[file:curry-howard.org][Curry Howard]]
 ** [[file:logical-relations.org][Logial Relations]]
+** [[file:defunctionalization.org][Defunctionalization]]
+** [[file:hyperfunctions.org][Hyperfunctions]]
 * Papers
 ** [[file:next-700-programming-languages.org][The next 700 Programming Languages]]
 ** [[file:theorems-for-free.org][Theorems for Free]]

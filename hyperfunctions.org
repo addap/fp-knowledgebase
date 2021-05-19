@@ -1,0 +1,8 @@
+#+TITLE: Hyperfunctions
+
+No idea what those are.
+
+* Resources
+** TODO [[https://www.youtube.com/watch?v=upLrw7N3xpI][YT live coding session where someone uses hyperfunctions]]
+** TODO [[https://doisinkidney.com/posts/2021-03-14-hyperfunctions.html][Accompanying blog post]]
+** TODO [[https://arxiv.org/pdf/1309.5135.pdf][Coroutining Folds with Hyperfunctions]]
