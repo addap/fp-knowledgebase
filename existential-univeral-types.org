@@ -1,0 +1,12 @@
+#+TITLE: Existential & Universal Types
+
+* Existential Types
+* Universal Types
+* Encoding Existential Types with Universal Types
+This is the parametric encoding we learned in ICL. Essentially you represent an existential type as its eliminator.
+exists X, T := forall Z, (forall X, T -> Z) -> Z
+
+* Encoding Universal Types with Existential Types
+I don't know how that would work. My intuition would be that it's not possible because a lambda calculus with these types shoudl correspond to some intuitionistic logic and in this logic forall and exists are not completely dual (one of the demorgan laws not provable).
+But then some form of double negation should be provable.
+There is some discussion about it on [[https://stackoverflow.com/questions/53375769/encoding-universal-types-in-terms-of-existential-types][stackoverflow]] and an associated [[https://old.reddit.com/r/haskell/comments/9yhlyu/encoding_universal_types_in_terms_of_existential/][reddit post]] that talks about how you could use co-exponential types to do the encoding.
