@@ -1,4 +1,5 @@
 * Description
 Type variables in a datatype that are not instaniated by constructors. Seem useless at first but apparently it's practical for things like input sanitation so you tag values by their type and can ensure your function is only called with sanitized input with the type system.
 * Resources
-** TODO [[http://www.cs.ox.ac.uk/people/ralf.hinze/talks/FOP.pdf][Fun with Phantom Types]] [[https://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][paper]]
+** TODO [[http://www.cs.ox.ac.uk/people/ralf.hinze/talks/FOP.pdf][Fun with Phantom Types]] [[https://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][talk]]
+** TODO [[http://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][Fun with Phantom Types paper]]

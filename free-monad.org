@@ -1,6 +1,6 @@
 * Description
 ** If f is a Functor then the Free Monad on f is the type of trees whose nodes are labeled with the constructors of f.
-A Free Monad seems to be a data structure that fulfills the Monad laws and nothing else. The meaning of the Free Monad can then be supplied by something else. It seems to be used in the "Free Monad + Interpreter" pattern to model a DSL.
+A Free Monad is a data structure that fulfills the Monad laws and nothing else. The meaning of the Free Monad can then be supplied by something else. It seems to be used in the "Free Monad + Interpreter" pattern to model a DSL.
 A Free Monad is a Monad that does nothing during the normalization step (join) beyond just grafting the two monadic values together. 
 They "free the interpreter" by splitting up program interpretation (semantics) from the program as it is written (syntax) of a DSL expressed as a simple functor datatype wrapped inside the Free Monad. You can either interpret the datastructure into a final monadic value like an IO (), or compile it into another free monad representing a lower level language that gives different guarantees.
 * Resources

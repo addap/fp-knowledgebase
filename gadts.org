@@ -2,6 +2,42 @@
 Generalized Algebraic Datatypes seem to be similar to indexed inductive datatypes in Coq because you can instantiate type variables in the target type of a constructor.
 * Resources
 ** TODO [[https://www.reddit.com/r/haskell/comments/rk0uf/why_gadts_are_awesome_implementing_system_f_using/][Why GADTs are awesome]]
-** TODO [[https://wiki.haskell.org/GADTs_for_dummies][GADTs for dummies]]
-** DONE [[http://www.haskellforall.com/2012/06/gadts.html?m=1][GADTs]] can be approximated using the [[file:yoneda-lemma.org::*Decription][Yoneda Lemma]]
+** DONE [[https://wiki.haskell.org/GADTs_for_dummies][GADTs for dummies]]
+not really an interesting article in the end I think.
+The author gives a lot of examples about how haskell might allow you to define functions on types and (but very little explanation) and hopes that the reader can then get the same intuition as the author when they talk about GADTs as giving you "type-to-data" translations.
+My best intuition is still that they are essentially indexed inductive types which then gives you type information when matching on terms by restricting what type variables can be instantiated with depending on the data constructor.
+** TODO [[http://www.haskellforall.com/2012/06/gadts.html?m=1][GADTs]] can be approximated using the [[file:yoneda-lemma.org::*Decription][Yoneda Lemma]]
 ** TODO [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/gadt-pldi.pdf][Simple unification-based type inference for GADTs]]
+** DONE [[https://lainchan.org/%CE%BB/res/1012.html#q1813][some lainon had a nice idea for building an interpreter with a GADT]]Pattern matching on the term then also specifies the return type of the function.
+#+begin_src haskell
+data Typ h where
+  TInt :: Typ Integer
+  TBool :: Typ Bool
+  TPair :: Typ h -> Typ j -> Typ (h, j)
+  TFun :: Typ h -> Typ j -> Typ (h -> j)
+
+typShow :: Typ h -> (h -> String)
+typShow TInt  n     = show n
+typShow TBool True  = "tru"
+typShow TBool False = "fal"
+typShow (TPair a b) (x,y) = "(" ++ typShow a x ++ "," ++ typShow b y ++ ")"
+typShow (TFun a b) f = "<function>"
+
+
+subtype :: Typ h -> Typ j -> Maybe (h -> j)
+subtype TInt  TBool = Just (\n -> n /= 0)
+subtype TInt  TInt  = Just id
+subtype TBool TBool = Just id
+
+subtype (TPair a b) (TPair c d) = do
+  sub1 <- subtype a c
+  sub2 <- subtype b d
+  Just (\(x,y) -> (sub1 x, sub2 y))
+
+subtype (TFun a b) (TFun c d) = do
+  subArg <- subtype c a
+  subRet <- subtype b d
+  Just (\f x -> subRet (f (subArg x)))
+
+subtype _ _ = Nothing
+#+end_src

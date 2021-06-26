@@ -1,3 +1,4 @@
 * Description
 * Resources
 ** TODO [[https://bahr.io/pubs/files/serrano15haskell-paper.pdf][Type Families and Type Classes]]
+** INPROGRESS [[https://wiki.haskell.org/GHC/Type_families][Haskell Wiki]]

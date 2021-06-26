@@ -41,9 +41,9 @@ And because the zipper is a nonempty list we eliminated one failure case we had 
 The paper then also discusses how one could use this approach when dealing with trees with known branch factor. In that case one can write go_up/go_down with an index.
 *** Evaluation
 The paper presents an interesting datastructure in a well understandable way. That the scars have zipper-lists for branches was my interpretation, I wished the paper had explained that when it presented scars. A believe that implementing these in Coq would be nice since most of the failure cases can be implicitly dealt with.
-
 ** TODO [[http://strictlypositive.org/CJ.pdf][More on Zippers from Conal Elliot]]
 ** TODO [[file:playground/src/zipper.lhs::We're%20going%20to%20take%20a%20look%20at%20an%20alternative%20way%20to%20define%20a%20Zipper%20Comonad][Zipper from Github Gist]]
 ** TODO [[https://chrispenner.ca/posts/representable-cofree-zippers][Zippers from Representable and Cofree]]
 ** TODO [[http://okmij.org/ftp/continuations/zipper.html][Okmij on Zippers]]
+** TODO [[http://okmij.org/ftp/Scheme/zipper-in-scheme.txt][Okmij on Zippers]] as [[file:continuation.org][delimited continuations]]
 ** TODO [[https://stackoverflow.com/questions/9190352/abusing-the-algebra-of-algebraic-data-types-why-does-this-work?rq=1][StackOverflow with a lot of extra information and connections to Category Theory]]

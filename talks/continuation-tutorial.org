@@ -1,0 +1,27 @@
+#+Title Continuations Tutorial
+#+Date 2021-06-15
+
+algebraic effects vs control operators
+If you define effects with control operators you need to define the behavior directly. With algebraic effects you can do it at the use site
+
+the typing statement for continuations is similar to `parameterized monads` apparently. and there should be a paper about it by someone names felinsky. This might be the references she used.
+
+[55] O. Danvy and A. Filinski. A functional abstraction of typed contexts. Tech-
+nical report, University of Copenhagen, 1989.
+
+[56] O. Danvy and A. Filinski. Abstracting control. In Proceedings of the 1990
+ACM conference on LISP and functional programming, pages 151–160. ACM,
+1990.
+
+[57] O. Danvy and A. Filinski. Representing control: a study of the cps transfor-
+mation, 1992.
+
+Also this from a Biernacka & Biernacki paper referenced in Youyou's dissertation https://ii.uni.wroc.pl/~dabi/publications/MFPS09/biernacka-biernacki-mfps09.pdf
+
+[11] Olivier  Danvy.   On  evaluation  contexts,  continuations,  and  the  rest  of  the  computation.   In  HayoThielecke, editor,Proceedings  of  the  Fourth  ACM  SIGPLAN  Workshop  on  Continuations  (CW’04),Technical  report  CSR-04-1,  Department  of  Computer  Science,  Queen  Mary’s  College,  pages  13–23,Venice, Italy, January 2004.  Invited talk.22
+
+[12] Olivier  Danvy.Defunctionalized  interpreters  for  programming  languages.In  Peter  Thiemann,editor,Proceedings of the 2008 ACM SIGPLAN International Conference on Functional Programming(ICFP’08), SIGPLAN Notices, Vol. 43, No. 9, Victoria, British Columbia, September 2008. ACM Press.Invited talk
+
+[14] Matthias  Felleisen.   The  theory  and  practice  of  first-class  prompts.   In  Jeanne  Ferrante  and  PeterMager, editors,Proceedings  of  the  Fifteenth  Annual  ACM  Symposium  on  Principles  of  ProgrammingLanguages, pages 180–190, San Diego, California, January 1988. ACM Press.
+
+[15] Matthias Felleisen and Daniel P. Friedman.  Control operators, the SECD machine, and theλ-calculus.In Martin Wirsing, editor,Formal Description of Programming Concepts III, pages 193–217. ElsevierScience Publishers B.V. (North-Holland), Amsterdam, 1986.
