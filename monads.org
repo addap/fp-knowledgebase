@@ -16,5 +16,7 @@ As such a monad "hides" the value and only provides access to it using a continu
 ** TODO [[http://blog.sigfpe.com/2008/12/mother-of-all-monads.html][Mother of all Monads]]
 ** TODO [[http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/28/slides/Comonad.pdf][Monads from Comonads, Comonads from Monads]]
 ** TODO [[https://github.com/dorchard/effect-monad][Effect Monads]]
+** TODO [[https://arxiv.org/pdf/1810.06037.pdf][Monads Partial Evaluation and Rewriting]]
+
 * Questions
 ** TODO What's a representable functor?
