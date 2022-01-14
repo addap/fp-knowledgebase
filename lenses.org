@@ -27,6 +27,10 @@ No it's not because a is both an input and in the output. the fmap with a functi
 ** DONE it seems a bit weird how we can factor out the a to get a tuple, then use the isomorphism to get back to a function representation and then move the a inwards again. 
 If f is always the functor (Store b) then (b -> f b) is trivial to write, it's just return and the right part (a -> f a) is just our original lens again. 
 *** TODO Do we ever use a different functor there?
+** TODO Are lenses from the banana paper related to Haskell lenses?
+Haskell lenses are coalgebras of the Store comonad
+banana lenses are a recursion scheme and an initial algebra/final coalgebra encodes a recursion scheme so maybe there is something
+From Bartosz' book "It turns out that a well-behaved lens corresponds to a coalgebra that is compatible with thecomonad structure."
 * Resources
 ** DONE [[https://www.schoolofhaskell.com/user/tel/lenses-from-scratch][Lenses from Scratch]]
 ** TODO [[https://bartoszmilewski.com/2013/10/08/lenses-stores-and-yoneda/][Lenses, Stores and Yoneda]]
