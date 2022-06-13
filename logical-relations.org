@@ -9,3 +9,4 @@ They are sometimes used in normalization proofs.
 ** TODO One of the papers of Eirjou Sumii had an overview on the differences between logical relations and bisimulations
 ** TODO One of the resources in [[file:theorems-for-free.org][theorems for free]] also deals with logical relations
 ** TODO [[https://surface.syr.edu/cgi/viewcontent.cgi?article=1002&context=lcsmith_other][Kripke Logical Relations and PCF]]
+** TODO http://cs.ru.nl/~dfrumin/logrel.html

@@ -1,5 +1,95 @@
 * Description
-Type variables in a datatype that are not instaniated by constructors. Seem useless at first but apparently it's practical for things like input sanitation so you tag values by their type and can ensure your function is only called with sanitized input with the type system.
+Type variables in a datatype that are not instantiated by constructors. Seem useless at first but apparently it's practical for things like input sanitation so you tag values by their type and can ensure your function is only called with sanitized input with the type system.
+* Examples
+** Example for data validation from Haskell wiki
+#+begin_src haskell
+data Validated
+data Unvalidated
+
+-- since we don't export the constructor itself,
+-- users with a String can only create Unvalidated values
+formData :: String -> FormData Unvalidated
+formData str = FormData str
+
+-- Nothing if the data doesn't validate
+validate :: FormData Unvalidated -> Maybe (FormData Validated)
+validate (FormData str) = ...
+
+-- can only be fed the result of a call to validate!
+useData :: FormData Validated -> IO ()
+useData (FormData str) = ...
+#+end_src
+
+The beauty of this is that we can define functions that work on all kinds of FormData, but still can't turn unvalidated data into validated data:
+#+begin_src haskell
+-- the library exports this
+liftStringFn :: (String -> String) -> FormData a -> FormData a
+liftStringFn fn (FormData str) = FormData (fn str)
+
+-- the validation state is the *same* in the return type and the argument
+dataToUpper :: FormData a -> FormData a
+dataToUpper = liftStringFn (map toUpper)
+#+end_src
+** Example that naturally came up in Rust
+We had some geometry stuff with rectangles where all sizes where measured in u32. I wanted to avoid mistakes where we could add a width to a height, so I used phantom types to tag the integers. Needs a lot of boilerplate the way I did it. The rust units of measure (uom) crate also uses phantom types to do this, e.g. you can have a length<meter> or length<cm> which are both really just floats.
+#+begin_src rust
+/// Dim is basically used as a kind (to make a set of types), similar to how DataKinds are used in Haskell
+pub trait Dim {}
+
+/// DimX and DimY are the member types of the Dim kind
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub struct DimX;
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub struct DimY;
+
+impl Dim for DimX {}
+impl Dim for DimY {}
+impl Dim for DimAny {}
+
+/// Public wrapper which uses PhantomData over Dim to statically tell apart x and y of monitor.
+/// Rust disallows phantom types where T is not used at all on the right hand side, so they give you the PhantomData type, which is an empty type.
+/// repr(transparent) should then ensure that udim is just compiled into a i32
+#[allow(non_camel_case_types)]
+#[repr(transparent)]
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub struct udim<T: Dim>(PhantomData<T>, i32);
+
+#[allow(non_camel_case_types)]
+pub type dimX = udim<DimX>;
+#[allow(non_camel_case_types)]
+pub type dimY = udim<DimY>;
+#+end_src
 * Resources
+** DONE [[https://wiki.haskell.org/Phantom_type][HaskellWiki page]]
 ** TODO [[http://www.cs.ox.ac.uk/people/ralf.hinze/talks/FOP.pdf][Fun with Phantom Types]] [[https://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][talk]]
-** TODO [[http://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][Fun with Phantom Types paper]]
+** INPROGRESS [[http://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][Fun with Phantom Types paper]]
+In this paper, Hinze actually goes beyond phantom types and talks about what is later known as GADTs.
+[[file:gadts.org][GADTs]] are just phantom types with type equations per constructor.
+If you build some value of type `Expr a` you can do a case analysis and get a type equation `a ~ Int`.
+This allows you to write functions to deconstruct these values, like eval.
+
+#+begin_src haskell
+data Expr a where
+    EBool  :: Bool     -> Expr Bool
+    EInt   :: Int      -> Expr Int
+    EEqual :: Expr Int -> Expr Int  -> Expr Bool
+
+eval :: Expr a -> a
+eval e = case e of
+    EBool a    -> a
+    EInt a     -> a
+    EEqual a b -> (eval a) == (eval b)
+#+end_src
+You cannot do this with phantom types because deconstructing an `Expr a` does not give you any information about the a, and you can even give nonsensical types to some values like
+#+begin_src haskell
+data Expr a where
+    EBool Bool
+    EInt Int
+    EEqual (Expr Int) (Expr Int)
+
+x :: Expr Int
+x = EBool True
+#+end_src
+[[https://stackoverflow.com/questions/30017971/converting-gadt-to-phantom-types][This stackoverflow question]] also explains the difference between phantom types and GADTs.
+** TODO [[https://ecommons.cornell.edu/handle/1813/5614][First class Phantom Types]]
+Another paper by Hinze where they apparently invent what is later known as GADTs

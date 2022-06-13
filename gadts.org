@@ -1,6 +1,28 @@
 * Description
 Generalized Algebraic Datatypes seem to be similar to indexed inductive datatypes in Coq because you can instantiate type variables in the target type of a constructor.
+But they do not have the strict positivity requirement of Coq's inductive datatypes.
+
+Their main point of usefulness is that for each constructor you get a type equation telling you what the conrete type of the type variable is. (See [[*Embedding a typed language][evaluator example]])
+* Examples
+** Embedding a typed language
+If you build some value of type `Expr a` you can do a case analysis and get a type equation `a ~ Int`.
+This allows you to write functions to deconstruct these values, like eval.
+
+#+begin_src haskell
+data Expr a where
+    EBool  :: Bool     -> Expr Bool
+    EInt   :: Int      -> Expr Int
+    EEqual :: Expr Int -> Expr Int  -> Expr Bool
+
+eval :: Expr a -> a
+eval e = case e of
+    EBool a    -> a
+    EInt a     -> a
+    EEqual a b -> (eval a) == (eval b)
+#+end_src
 * Resources
+** DONE [[https://en.wikibooks.org/wiki/Haskell/GADT#Phantom_types][HaskellWiki page]]
+They also explain the difference to [[file:phantom-types.org][phantom types]], e.g. that they don't give you type equations.
 ** TODO [[https://www.reddit.com/r/haskell/comments/rk0uf/why_gadts_are_awesome_implementing_system_f_using/][Why GADTs are awesome]]
 ** DONE [[https://wiki.haskell.org/GADTs_for_dummies][GADTs for dummies]]
 not really an interesting article in the end I think.
@@ -8,7 +30,8 @@ The author gives a lot of examples about how haskell might allow you to define f
 My best intuition is still that they are essentially indexed inductive types which then gives you type information when matching on terms by restricting what type variables can be instantiated with depending on the data constructor.
 ** TODO [[http://www.haskellforall.com/2012/06/gadts.html?m=1][GADTs]] can be approximated using the [[file:yoneda-lemma.org::*Decription][Yoneda Lemma]]
 ** TODO [[https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/gadt-pldi.pdf][Simple unification-based type inference for GADTs]]
-** DONE [[https://lainchan.org/%CE%BB/res/1012.html#q1813][some lainon had a nice idea for building an interpreter with a GADT]]Pattern matching on the term then also specifies the return type of the function.
+** DONE [[https://lainchan.org/%CE%BB/res/1012.html#q1813][some lainon had a nice idea for building an interpreter with a GADT]]
+Pattern matching on the term then also specifies the return type of the function.
 #+begin_src haskell
 data Typ h where
   TInt :: Typ Integer
