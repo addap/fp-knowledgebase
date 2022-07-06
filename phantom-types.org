@@ -62,7 +62,7 @@ pub type dimY = udim<DimY>;
 * Resources
 ** DONE [[https://wiki.haskell.org/Phantom_type][HaskellWiki page]]
 ** TODO [[http://www.cs.ox.ac.uk/people/ralf.hinze/talks/FOP.pdf][Fun with Phantom Types]] [[https://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][talk]]
-** INPROGRESS [[http://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][Fun with Phantom Types paper]]
+** DONE [[http://www.cs.ox.ac.uk/ralf.hinze/publications/With.pdf][Fun with Phantom Types paper]]
 In this paper, Hinze actually goes beyond phantom types and talks about what is later known as GADTs.
 [[file:gadts.org][GADTs]] are just phantom types with type equations per constructor.
 If you build some value of type `Expr a` you can do a case analysis and get a type equation `a ~ Int`.
